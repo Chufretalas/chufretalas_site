@@ -1,3 +1,8 @@
+<script>
+    import BasicSection from "$lib/components/BasicSection.svelte";
+    import GithubLogo from "$lib/components/svgs/GithubLogo.svelte";
+</script>
+
 <nav>
     <div>
         <h1>Chufretalas</h1>
@@ -5,8 +10,7 @@
     </div>
 </nav>
 <main>
-    <section>
-        <h2>Sobre mim</h2>
+    <BasicSection title="Sobre mim" accentColor="#bdf5ac">
         <div class="section_content">
             <div class="section_text">
                 <p>
@@ -40,14 +44,22 @@
                 <span>Minha mais bela criação, o Cãovo</span>
             </div>
         </div>
-    </section>
-    <section>
-        <h2>Meus projetos</h2>
-        <a href="https://github.com/Chufretalas">
-            <img src="" alt="" />
-            <span>Github</span>
+    </BasicSection>
+    <BasicSection title="Meus projetos">
+        <a
+            href="https://github.com/Chufretalas"
+            target="_blank"
+            class="github_wrapper"
+        >
+            <div class="github_div">
+                <GithubLogo />
+                <span>Github</span>
+            </div>
         </a>
-    </section>
+        <a href="/projects">
+            <section></section>
+        </a>
+    </BasicSection>
 </main>
 
 <style>
@@ -71,20 +83,6 @@
         margin-top: 20px;
     }
 
-    section {
-        border: 4px solid black;
-        padding: 10px 20px;
-        margin: 10px;
-        box-shadow: 7px 7px black;
-    }
-
-    section h2 {
-        text-align: center;
-        font-weight: bold;
-        font-size: large;
-        text-decoration: underline;
-    }
-
     .section_content {
         display: flex;
         margin-top: 20px;
@@ -97,14 +95,43 @@
         row-gap: 12px;
     }
 
+    .github_div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+        width: min-content;
+        border: 4px solid black;
+        padding: 8px;
+        margin: 12px;
+        box-shadow: 7px 7px #1f6feb;
+        transition: all 300ms;
+    }
+
+    .github_wrapper {
+        color: black;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .github_wrapper:hover .github_div {
+        background-color: black;
+        color: white;
+        fill: white;
+        box-shadow: 7px 7px 5px #1f6feb;
+    }
+
+    .github_wrapper:hover .github_div * {
+        fill: white;
+    }
+
     .section_img {
-        
     }
 
     .section_img img {
         max-width: 230px;
         border-radius: 999999999px;
-    } 
+    }
     .section_img span {
         font-size: small;
     }

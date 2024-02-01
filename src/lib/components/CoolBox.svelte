@@ -3,12 +3,12 @@
     export let accentColor = "black";
 </script>
 
-<section class="main_sect" style:box-shadow={`7px 7px ${accentColor}`}>
+<div class="main_sect" style:box-shadow={`7px 7px ${accentColor}`}>
     {#if title}
         <h2 class="title">{title}</h2>
     {/if}
     <slot />
-</section>
+</div>
 
 <style>
     .main_sect {
@@ -19,7 +19,7 @@
 
     .main_sect .title {
         text-align: center;
-        font-weight: bold;
+        font-weight: bolder;
         font-size: large;
         text-decoration: underline;
     }

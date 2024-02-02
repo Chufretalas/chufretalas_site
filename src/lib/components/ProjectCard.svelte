@@ -1,30 +1,40 @@
 <script lang="ts">
+    import type { IProject } from "$lib/data/projects";
     import CoolBox from "./CoolBox.svelte";
-    //TODO: style this and make it dynamic
+    export let project: IProject;
 </script>
 
 <div class="wrapper">
     <CoolBox>
         <div class="inner_wrapper">
-            <span class="title">Personal site</span>
+            <span class="title">{project.title}</span>
             <div class="tags_and_img">
                 <ul class="tag_list">
-                    <li>js</li>
-                    <li>go</li>
-                    <li>sql</li>
+                    {#each project.tags as tag}
+                        <li
+                            style:background-color={tag.bgColor}
+                            style:color={tag.color}
+                        >
+                            {tag.name}
+                        </li>
+                    {/each}
                 </ul>
                 <img
                     class="preview_img"
-                    src="https://raw.githubusercontent.com/Chufretalas/web_speech_guessing_game_pt-br/main/game_screenshot.jpg"
-                    alt=""
+                    src={project.img}
+                    alt={`${project.title}'s preview image`}
                 />
             </div>
             <div class="external_buttons">
-                <a href="https://github.com/Chufretalas/chufretalas_site" target="_blank">Repositório</a>
-                <a href="/" target="_blank">Deploy</a>
+                {#if project.repoURL}
+                    <a href={project.repoURL} target="_blank">Repositório</a>
+                {/if}
+                {#if project.deployURL}
+                    <a href={project.deployURL} target="_blank">Deploy</a>
+                {/if}
             </div>
             <p class="description">
-                Descrição .... muiiiito longa com algumas coisas e pah
+                {project.description}
             </p>
         </div>
     </CoolBox>
@@ -37,7 +47,7 @@
     }
 
     .wrapper {
-        width: 350px;
+        width: 400px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -72,8 +82,9 @@
     .tag_list li {
         background-color: black;
         color: white;
+        font-size: smaller;
         border-radius: 9999999px;
-        padding: 4px 8px;
+        padding: 2px 6px;
         height: fit-content;
     }
 

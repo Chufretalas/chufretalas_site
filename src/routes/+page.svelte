@@ -1,10 +1,11 @@
 <script>
-    import BasicSection from "$lib/components/CoolBox.svelte";
+    import CoolBox from "$lib/components/CoolBox.svelte";
     import Navbar from "$lib/components/Navbar.svelte";
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import VeryNiceLookingButton from "$lib/components/VeryNiceLookingButton.svelte";
     import GithubLogo from "$lib/components/svgs/GithubLogo.svelte";
     import LinkedInLogo from "$lib/components/svgs/LinkedInLogo.svelte";
+    import { PROJECTS } from "$lib/data/projects";
 </script>
 
 <Navbar />
@@ -26,7 +27,7 @@
         </VeryNiceLookingButton>
     </section>
     <section class="section_middle">
-        <BasicSection title="Sobre mim" accentColor="#bdf5ac">
+        <CoolBox title="Sobre mim" accentColor="#bdf5ac">
             <div class="section_content">
                 <div class="section_text">
                     <p>
@@ -61,18 +62,17 @@
                     <span>Minha mais bela criação, o Cãovo</span>
                 </div>
             </div>
-        </BasicSection>
-        <BasicSection title="Meus projetos" accentColor="#ff3e00">
+        </CoolBox>
+        <CoolBox title="Meus projetos" accentColor="black">
             <div class="sample_projects_wrapper">
-                <ProjectCard />
-                <ProjectCard />
-                <ProjectCard />
+                <ProjectCard project={PROJECTS[0]}/>
+                <ProjectCard project={PROJECTS[3]}/>
             </div>
             <div class="projects_button_wrapper">
                 <a href="/projetos" class="projects_button">Todos os projetos</a
                 >
             </div>
-        </BasicSection>
+        </CoolBox>
     </section>
     <section class="section_right"></section>
 </main>

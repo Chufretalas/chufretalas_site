@@ -1,17 +1,13 @@
 <script>
     import BasicSection from "$lib/components/CoolBox.svelte";
+    import Navbar from "$lib/components/Navbar.svelte";
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import VeryNiceLookingButton from "$lib/components/VeryNiceLookingButton.svelte";
     import GithubLogo from "$lib/components/svgs/GithubLogo.svelte";
     import LinkedInLogo from "$lib/components/svgs/LinkedInLogo.svelte";
 </script>
 
-<nav>
-    <div>
-        <h1>Chufretalas</h1>
-        <span>por Marco Antonio</span>
-    </div>
-</nav>
+<Navbar />
 <main>
     <section class="section_left">
         <VeryNiceLookingButton
@@ -67,29 +63,21 @@
             </div>
         </BasicSection>
         <BasicSection title="Meus projetos" accentColor="#ff3e00">
-            <ProjectCard>
-
-            </ProjectCard>
+            <div class="sample_projects_wrapper">
+                <ProjectCard />
+                <ProjectCard />
+                <ProjectCard />
+            </div>
+            <div class="projects_button_wrapper">
+                <a href="/projetos" class="projects_button">Todos os projetos</a
+                >
+            </div>
         </BasicSection>
     </section>
     <section class="section_right"></section>
 </main>
 
 <style>
-    nav {
-        background-color: black;
-        color: white;
-        padding: 5px;
-    }
-
-    nav h1 {
-        font-weight: bold;
-        font-size: 2rem;
-    }
-    nav span {
-        margin-left: 10px;
-    }
-
     main {
         display: grid;
         grid-template-columns: 1fr 6fr 1fr;
@@ -108,11 +96,41 @@
         justify-content: center;
         row-gap: 12px;
     }
+
     .section_img img {
         max-width: 230px;
         border-radius: 999999999px;
     }
+
     .section_img span {
         font-size: small;
+    }
+
+    .sample_projects_wrapper {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .projects_button_wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .projects_button {
+        background-color: white;
+        color: black;
+        border: 3px solid black;
+        font-weight: bold;
+        font-size: large;
+        text-align: center;
+        text-decoration: none;
+        padding: 4px 10px;
+        transition: all 200ms;
+    }
+
+    .projects_button:hover {
+        background-color: black;
+        color: white;
     }
 </style>

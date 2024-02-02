@@ -20,7 +20,7 @@
     .main_sect .title {
         text-align: center;
         font-weight: bolder;
-        font-size: large;
+        font-size: larger;
         text-decoration: underline;
     }
 </style>

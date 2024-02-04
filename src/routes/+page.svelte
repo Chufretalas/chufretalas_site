@@ -8,7 +8,9 @@
     import { PROJECTS } from "$lib/data/projects";
     import toShuffled from "$lib/utils/shuffle";
 
-    const sampleProjects = toShuffled(PROJECTS)
+    const sampleProjects = toShuffled(PROJECTS);
+
+    let aboutReadMore = false;
 </script>
 
 <Navbar />
@@ -31,22 +33,22 @@
     </section>
     <section class="section_middle">
         <CoolBox title="Sobre mim" accentColor="#bdf5ac">
-            <div class="section_content">
-                <div class="section_text">
+            <div class="about_section_content">
+                <div class="about_section_text">
                     <p>
                         Meu nome é Marco Antonio Benevenuto de Oliveira. Sou um
                         programador brasileiro que ama se desafiar e resolver
                         problemas, desde de arrumar algum CSS quebrado no
                         frontend até aprender assembly RISC-V para usar uma
-                        plaquinha chinesa quase sem documentação.
+                        plaquinha do aliexpress quase sem documentação.
                     </p>
-                    <p>
+                    <p class:hide_show_more={!aboutReadMore}>
                         Sou técnico em eletrônica formado pelo IFSP em 2021,
                         sendo que atualmente estou no meu segundo ano na UFABC
                         em busca do meu diploma de bachrelado em ciência da
                         computação.
                     </p>
-                    <p>
+                    <p class:hide_show_more={!aboutReadMore}>
                         Por conta da pandemia, fiquei de janeiro de 2022 até
                         setembro com tempo livre antes da faculdade iniciar as
                         aula. Foi esse tempo que usei para estudar o máximo que
@@ -57,19 +59,22 @@
                         máximo, estudando e fazendo diversos projetos.
                     </p>
                 </div>
-                <div class="section_img">
+                <div class="about_section_img" class:hide_show_more={!aboutReadMore}>
                     <img
                         src="https://avatars.githubusercontent.com/u/101844490?v=4"
                         alt=""
                     />
                     <span>Minha mais bela criação, o Cãovo</span>
                 </div>
+                <button on:click={() => (aboutReadMore = !aboutReadMore)}
+                  id="about_show_more_button"  >{aboutReadMore ? "Mostrar Menos" : "Mostrar Mais"}</button
+                >
             </div>
         </CoolBox>
         <CoolBox title="Meus projetos" accentColor="black">
             <div class="sample_projects_wrapper">
-                <ProjectCard project={sampleProjects[0]}/>
-                <ProjectCard project={sampleProjects[1]}/>
+                <ProjectCard project={sampleProjects[0]} />
+                <ProjectCard project={sampleProjects[1]} />
             </div>
             <div class="projects_button_wrapper">
                 <a href="/projetos" class="projects_button">Todos os projetos</a
@@ -88,25 +93,29 @@
         margin-top: 20px;
     }
 
-    .section_content {
+    .about_section_content {
         display: flex;
         margin-top: 20px;
     }
 
-    .section_text {
+    .about_section_text {
         display: flex;
         flex-direction: column;
         justify-content: center;
         row-gap: 12px;
     }
 
-    .section_img img {
+    .about_section_img img {
         max-width: 230px;
         border-radius: 999999999px;
     }
 
-    .section_img span {
+    .about_section_img span {
         font-size: small;
+    }
+
+    #about_show_more_button {
+        display: none;
     }
 
     .sample_projects_wrapper {
@@ -135,5 +144,45 @@
     .projects_button:hover {
         background-color: black;
         color: white;
+    }
+
+    @media only screen and (max-width: 768px) {
+        main {
+            display: block;
+        }
+
+        .section_left {
+            display: none;
+        }
+
+        .section_right {
+            display: none;
+        }
+
+        .about_section_content {
+            flex-direction: column;
+        }
+
+        .about_section_img {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+            row-gap: 5px;
+        }
+
+        .hide_show_more {
+            display: none;
+        }
+
+        #about_show_more_button {
+            display: inline-block;
+            border: none;
+            background: none;
+            text-decoration: underline;
+            margin-top: 10px;
+            color: black;
+            font-weight: bolder;
+        }
     }
 </style>

@@ -121,4 +121,11 @@
     .description {
         font-size: small;
     }
+
+    
+    @media only screen and (max-width: 768px) {
+        .wrapper {
+            width: 100%;
+        }
+    }
 </style>

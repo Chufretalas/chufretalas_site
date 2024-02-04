@@ -23,4 +23,12 @@
         font-size: larger;
         text-decoration: underline;
     }
+
+    
+    @media only screen and (max-width: 768px) {
+        .main_sect {
+        padding: 8px 12px;
+            margin: 10px;
+        }
+    }
 </style>

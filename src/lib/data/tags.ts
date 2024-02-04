@@ -3,7 +3,7 @@ export const TAGS = {
     "typescript": { name: "typescript", bgColor: "#3178c6", color: "white" },
     "HTML": { name: "HTML", bgColor: "#e34c26", color: "white" },
     "CSS": { name: "CSS", bgColor: "#563d7c", color: "white" },
-    "go": { name: "go", bgColor: "#00add8", color: "black" },
+    "go": { name: "go", bgColor: "#00add8", color: "white" },
     "python": { name: "python", bgColor: "#3572a5", color: "white" },
     "sqlite": { name: "sqlite", bgColor: "#044a64", color: "white" },
     "postgreSQL": { name: "postgreSQL", bgColor: "#336791", color: "white" },

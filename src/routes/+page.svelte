@@ -6,6 +6,9 @@
     import GithubLogo from "$lib/components/svgs/GithubLogo.svelte";
     import LinkedInLogo from "$lib/components/svgs/LinkedInLogo.svelte";
     import { PROJECTS } from "$lib/data/projects";
+    import toShuffled from "$lib/utils/shuffle";
+
+    const sampleProjects = toShuffled(PROJECTS)
 </script>
 
 <Navbar />
@@ -65,8 +68,8 @@
         </CoolBox>
         <CoolBox title="Meus projetos" accentColor="black">
             <div class="sample_projects_wrapper">
-                <ProjectCard project={PROJECTS[0]}/>
-                <ProjectCard project={PROJECTS[3]}/>
+                <ProjectCard project={sampleProjects[0]}/>
+                <ProjectCard project={sampleProjects[1]}/>
             </div>
             <div class="projects_button_wrapper">
                 <a href="/projetos" class="projects_button">Todos os projetos</a

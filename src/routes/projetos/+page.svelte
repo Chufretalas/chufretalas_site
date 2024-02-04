@@ -4,6 +4,7 @@
     import Navbar from "$lib/components/Navbar.svelte";
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import { PROJECTS } from "$lib/data/projects";
+    import toShuffled from "$lib/utils/shuffle";
 </script>
 
 <Navbar />
@@ -11,7 +12,7 @@
     <CoolBox title="Todos (ou quase) os meus projetos">
         <ul>
             <div class="projects_wrapper">
-                {#each PROJECTS as project}
+                {#each toShuffled(PROJECTS) as project}
                     <ProjectCard {project} />
                 {/each}
             </div>

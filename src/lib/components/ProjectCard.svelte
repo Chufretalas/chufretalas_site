@@ -75,6 +75,7 @@
     .tag_list {
         display: flex;
         flex-wrap: wrap;
+        align-content: flex-start;
         justify-content: center;
         gap: 5px;
     }
@@ -84,11 +85,13 @@
         color: white;
         font-size: smaller;
         border-radius: 9999999px;
-        padding: 2px 6px;
+        padding: 3px 6px;
         height: fit-content;
     }
 
     .preview_img {
+        border: 1px solid black;
+        border-radius: 6px;
         max-width: 50%;
         max-height: 100%;
     }

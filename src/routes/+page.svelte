@@ -59,15 +59,17 @@
                         máximo, estudando e fazendo diversos projetos.
                     </p>
                 </div>
-                <div class="about_section_img" class:hide_show_more={!aboutReadMore}>
-                    <img
-                        src="https://avatars.githubusercontent.com/u/101844490?v=4"
-                        alt=""
-                    />
-                    <span>Minha mais bela criação, o Cãovo</span>
+                <div
+                    class="about_section_img"
+                    class:hide_show_more={!aboutReadMore}
+                >
+                    <img src="/profile_picture.webp" alt="minha foto" />
+                    <span>↑ Eu ↑</span>
                 </div>
-                <button on:click={() => (aboutReadMore = !aboutReadMore)}
-                  id="about_show_more_button"  >{aboutReadMore ? "Mostrar Menos" : "Mostrar Mais"}</button
+                <button
+                    on:click={() => (aboutReadMore = !aboutReadMore)}
+                    id="about_show_more_button"
+                    >{aboutReadMore ? "Mostrar Menos" : "Mostrar Mais"}</button
                 >
             </div>
         </CoolBox>
@@ -105,13 +107,21 @@
         row-gap: 12px;
     }
 
+    .about_section_img {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 5px;
+    }
+
     .about_section_img img {
-        max-width: 230px;
+        max-width: 200px;
         border-radius: 999999999px;
     }
 
     .about_section_img span {
         font-size: small;
+        text-align: center;
     }
 
     #about_show_more_button {
@@ -164,11 +174,7 @@
         }
 
         .about_section_img {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             margin-top: 10px;
-            row-gap: 5px;
         }
 
         .hide_show_more {

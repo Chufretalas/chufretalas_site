@@ -17,6 +17,7 @@ export const TAGS = {
     "flask": { name: "flask", bgColor: "#3eabbf", color: "white" },
     "tailwind": { name: "tailwind", bgColor: "#38bdf8", color: "black" },
     "cypress": { name: "tailwind", bgColor: "#58d09e", color: "white" },
+    "wasm": { name: "wasm", bgColor: "#624de8", color: "white" },
 }
 
 export interface Tag {

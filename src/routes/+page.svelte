@@ -38,7 +38,7 @@
                     <p>
                         Meu nome é Marco Antonio Benevenuto de Oliveira. Sou um
                         programador brasileiro que ama se desafiar e resolver
-                        problemas, desde de arrumar algum CSS quebrado no
+                        problemas, desde arrumar algum CSS quebrado no
                         frontend até aprender assembly RISC-V para usar uma
                         plaquinha do aliexpress quase sem documentação.
                     </p>

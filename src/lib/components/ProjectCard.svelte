@@ -30,7 +30,7 @@
                     <a href={project.repoURL} target="_blank">Repositório</a>
                 {/if}
                 {#if project.deployURL}
-                    <a href={project.deployURL} target="_blank">Deploy</a>
+                    <a href={project.deployURL} target="_blank">Deployment</a>
                 {/if}
             </div>
             <p class="description">

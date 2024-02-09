@@ -8,6 +8,7 @@
     <div class="navigation_buttons">
         <a href="/">Home</a>
         <a href="/projetos">Projetos</a>
+        <a href="/jogos/falling_sand" class="only_on_computer">Falling Sand v1</a>
         <a href="https://github.com/Chufretalas" target="_blank">Github</a>
         <a href="https://www.linkedin.com/in/marco-benevenuto" target="_blank">LinkedIn</a>
     </div>
@@ -40,7 +41,10 @@
 
     .navigation_buttons {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
         column-gap: 1rem;
+        row-gap: 10px;
     }
 
     .navigation_buttons a {
@@ -61,6 +65,10 @@
 
         .navigation_buttons::before {
             content: none;
+        }
+
+        .only_on_computer {
+            display: none;
         }
     }
 </style>

@@ -26,6 +26,14 @@ export const PROJECTS: IProject[] = [
         description: "Um joguinho feito 100% em go.",
     },
     {
+        title: "Falling Sand",
+        repoURL: "https://github.com/Chufretalas/falling_sand",
+        deployURL: "/jogos/falling_sand",
+        tags: [TAGS.go, TAGS.wasm],
+        img: "/project_thumbnails/thumbnail_falling_sand.webp",
+        description: "Simulação de areia caindo feita em go.",
+    },
+    {
         title: "Adopet",
         repoURL: "https://github.com/Chufretalas/adopet",
         deployURL: "https://adopet-chuf.vercel.app/",

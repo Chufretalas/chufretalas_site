@@ -9,7 +9,7 @@
         <div id="inner_wrapper">
             <span id="instructions"
                 >LMB: colocar | RMB: retirar | C: limpar tudo | K/L: resolução |
-                Setas cima/baixo: tamanho do pincel | F: tela cheia</span
+                ↑ ↓: tamanho do pincel | F: tela cheia</span
             >
             <iframe
                 src="/falling_sand_v1.html"
@@ -37,8 +37,8 @@
 
     #instructions {
         text-align: center;
-        margin-top: 20px;
-        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-top: 12px;
         font-weight: bolder;
     }
 

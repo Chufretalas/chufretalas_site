@@ -8,7 +8,8 @@
     <div class="navigation_buttons">
         <a href="/">Home</a>
         <a href="/projetos">Projetos</a>
-        <a href="/jogos/falling_sand" class="only_on_computer">Falling Sand v1</a>
+        <a href="/jogos/falling_sand" class="only_on_computer">Falling Sand ⌛</a>
+        <a href="/jogos/scramble_ghosts" class="only_on_computer">Scramble Ghosts 👻</a>
         <a href="https://github.com/Chufretalas" target="_blank">Github</a>
         <a href="https://www.linkedin.com/in/marco-benevenuto" target="_blank">LinkedIn</a>
     </div>

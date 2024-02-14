@@ -21,7 +21,8 @@ export const PROJECTS: IProject[] = [
     {
         title: "Scramble Ghosts",
         repoURL: "https://github.com/Chufretalas/scramble_ghosts",
-        tags: [TAGS.go],
+        deployURL: "/jogos/scramble_ghosts",
+        tags: [TAGS.go, TAGS.wasm],
         img: "/project_thumbnails/thumbnail_scramble_ghosts.webp",
         description: "Um joguinho feito 100% em go.",
     },

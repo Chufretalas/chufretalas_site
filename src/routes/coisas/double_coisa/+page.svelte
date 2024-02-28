@@ -37,8 +37,6 @@
         console.log(matrix2DToString(scores));
     }
 
-    
-
     function saveToURL() {
         searchParams.set("rounds", rounds.toString());
         searchParams.set("nPlayers", nPlayers.toString());
@@ -46,10 +44,7 @@
             "players",
             players.reduce((acc, crr) => acc + ";" + crr, "").slice(1),
         );
-        searchParams.set(
-            "scores",
-            matrix2DToString(scores)
-        );
+        searchParams.set("scores", matrix2DToString(scores));
         if (isMounted) {
             goto($page.url.pathname + "?" + searchParams.toString(), {
                 keepFocus: true,
@@ -112,35 +107,45 @@
                 {#each range(1, rounds + 1) as roundNumber}
                     <th>Round {roundNumber}</th>
                 {/each}
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
             {#each range(0, nPlayers) as vidx}
                 <tr>
-                    {#each range(-1, rounds) as hidx}
-                        {#if hidx == -1}
-                            <td
-                                ><input
-                                    type="text"
-                                    bind:value={players[vidx]}
-                                    placeholder={`Jogador ${vidx + 1}`}
-                                />
-                                {`${vidx} ${hidx}`}
-                            </td>
-                        {:else}
-                            <td
-                                ><input
-                                    type="number"
-                                    min="0"
-                                    step="1"
-                                    bind:value={scores[vidx][hidx]}
-                                    placeholder={`Rodada ${hidx}`}
-                                    id={`${vidx} ${hidx}`}
-                                />
-                                {`${vidx} ${hidx}`}
-                            </td>
-                        {/if}
+                    <td
+                        ><input
+                            type="text"
+                            bind:value={players[vidx]}
+                            placeholder={`Jogador ${vidx + 1}`}
+                        />
+                        {`${vidx}`}
+                    </td>
+                    {#each range(0, rounds) as hidx}
+                        <td
+                            ><input
+                                type="number"
+                                min="0"
+                                step="1"
+                                bind:value={scores[vidx][hidx]}
+                                placeholder={`Rodada ${hidx}`}
+                                id={`${vidx} ${hidx}`}
+                            />
+                            {`${vidx} ${hidx}`}
+                        </td>
                     {/each}
+                    <td
+                        ><input
+                            type="number"
+                            disabled
+                            value={scores[vidx].reduce(
+                                (acc, crr) => acc + crr,
+                                0,
+                            )}
+                            placeholder={`Jogador ${vidx + 1}`}
+                        />
+                        {`${vidx}`}
+                    </td>
                 </tr>
             {/each}
         </tbody>

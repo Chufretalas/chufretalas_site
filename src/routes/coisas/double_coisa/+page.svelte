@@ -10,20 +10,15 @@
 
     let isMounted = false;
 
-    onMount(() => (isMounted = true));
-
     let formRounds: number;
     let formNPlayers: number;
 
     let rounds: number = 10;
     let nPlayers: number = 5;
 
-    let players: string[];
-    let scores: number[][];
+    let players = new Array<string>(nPlayers).fill("");
 
-    $: players = new Array<string>(rounds).fill("");
-
-    $: scores = new Array(nPlayers)
+    let scores = new Array(nPlayers)
         .fill(undefined)
         .map(() => new Array(rounds));
 
@@ -33,28 +28,69 @@
         players;
         scores;
         saveToURL();
-
-        console.log(matrix2DToString(scores));
     }
 
     function saveToURL() {
-        searchParams.set("rounds", rounds.toString());
-        searchParams.set("nPlayers", nPlayers.toString());
-        searchParams.set(
-            "players",
-            players.reduce((acc, crr) => acc + ";" + crr, "").slice(1),
-        );
-        searchParams.set("scores", matrix2DToString(scores));
+        console.log("params", Array.from(searchParams.values()));
+        console.log("fui chamado", isMounted);
         if (isMounted) {
+            searchParams.set("rounds", rounds.toString());
+            searchParams.set("nPlayers", nPlayers.toString());
+
+            let playersString = "";
+
+            for (let i = 0; i < players.length; i++) {
+                if (i === players.length - 1) {
+                    playersString += players[i];
+                    break;
+                }
+                playersString += players[i] + ";";
+            }
+
+            searchParams.set("players", playersString);
+            searchParams.set("scores", matrix2DToString(scores));
             goto($page.url.pathname + "?" + searchParams.toString(), {
                 keepFocus: true,
             });
         }
     }
 
-    //TODO: add a final result column at the end
+    onMount(() => {
+        const sPRounds = searchParams.get("rounds");
+        const sPNPlayers = searchParams.get("nPlayers");
+        const sPPlayers = searchParams.get("players");
+        const sPScores = searchParams.get("scores");
+
+        if (sPRounds && sPNPlayers && sPPlayers && sPScores) {
+            console.log({ sPRounds, sPNPlayers, sPPlayers, sPScores });
+            rounds = +sPRounds;
+            nPlayers = +sPNPlayers;
+            players = sPPlayers.split(";");
+
+            const newScores: any[][] = [];
+
+            let idx = 0;
+            const split = sPScores.split(";");
+            for (let i = 0; i < nPlayers; i++) {
+                newScores.push([]);
+                for (let j = 0; j < rounds; j++) {
+                    console.log(split[idx]);
+                    newScores[i].push(
+                        split[idx] === "<nil>" ? undefined : +split[idx],
+                    );
+                    idx++;
+                }
+            }
+
+            console.log("new scores", newScores);
+
+            scores = newScores;
+        }
+
+        isMounted = true;
+    });
+
     //TODO: make it decent to look at
-    //TODO: load the data from the url on mount
     //TODO: add a reset button
 </script>
 
@@ -70,6 +106,10 @@
                 if (formNPlayers !== nPlayers || formRounds !== rounds) {
                     nPlayers = formNPlayers;
                     rounds = formRounds;
+                    players = new Array(formNPlayers).fill("");
+                    scores = new Array(formNPlayers)
+                        .fill(undefined)
+                        .map(() => new Array(formRounds));
                     saveToURL();
                 }
             }
@@ -105,7 +145,7 @@
             <tr>
                 <th></th>
                 {#each range(1, rounds + 1) as roundNumber}
-                    <th>Round {roundNumber}</th>
+                    <th>Rodada {roundNumber}</th>
                 {/each}
                 <th>Total</th>
             </tr>
@@ -119,7 +159,6 @@
                             bind:value={players[vidx]}
                             placeholder={`Jogador ${vidx + 1}`}
                         />
-                        {`${vidx}`}
                     </td>
                     {#each range(0, rounds) as hidx}
                         <td
@@ -131,7 +170,6 @@
                                 placeholder={`Rodada ${hidx}`}
                                 id={`${vidx} ${hidx}`}
                             />
-                            {`${vidx} ${hidx}`}
                         </td>
                     {/each}
                     <td
@@ -139,12 +177,11 @@
                             type="number"
                             disabled
                             value={scores[vidx].reduce(
-                                (acc, crr) => acc + crr,
+                                (acc, crr) => acc+ crr,
                                 0,
                             )}
                             placeholder={`Jogador ${vidx + 1}`}
                         />
-                        {`${vidx}`}
                     </td>
                 </tr>
             {/each}

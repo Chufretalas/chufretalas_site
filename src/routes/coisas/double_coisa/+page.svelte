@@ -87,9 +87,10 @@
         isMounted = true;
     });
 
-    //TODO: make it decent to look at
     //TODO: make an indication to whoever is winning
     //TODO: show a leaderboard when all scores are filled
+
+    //TODO: make a /coisas page and show this thing
 </script>
 
 <svelte:head>
@@ -299,6 +300,17 @@
     #config_form span {
         margin-top: 5px;
         font-size: small;
+    }
+
+    
+    @media only screen and (max-width: 768px) {
+        #config_form {
+            width: 90%;
+        }
+
+        #config_form .inputs {
+            width: 80%;
+        }
     }
 
     /* Table styles */

@@ -6,8 +6,6 @@
     import range from "$lib/utils/range";
     import { onMount } from "svelte";
 
-    const colors = ["#9cee98", "#98eeec", "#98b2ee", "#eeea98", "#ee9898"];
-
     const searchParams = new URLSearchParams($page.url.searchParams);
 
     let isMounted = false;
@@ -99,6 +97,10 @@
 
 <Navbar />
 <main>
+    <div id="title">
+        <h1>Double Coisa</h1>
+        <span>Marcador de pontos para o jogo double 9, 12 e qualquer outra versão</span>
+    </div>
     <form
         id="config_form"
         on:submit={(e) => {
@@ -127,7 +129,8 @@
                     type="number"
                     name="rounds"
                     id="rounds"
-                    placeholder="10..."
+                    placeholder="..."
+                    required
                     min="1"
                     step="1"
                     bind:value={formRounds}
@@ -140,7 +143,8 @@
                     type="number"
                     name="n_players"
                     id="n_players"
-                    placeholder="6..."
+                    placeholder="..."
+                    required
                     min="1"
                     step="1"
                     bind:value={formNPlayers}
@@ -163,7 +167,7 @@
         <tbody>
             {#each range(0, nPlayers) as vidx}
                 <tr
-                    style:filter={`hue-rotate(${Math.random() * 20 + vidx * 80}deg)`}
+                    style:filter={`hue-rotate(${Math.random() * 20 + vidx * 77}deg)`}
                 >
                     <td>
                         <div>
@@ -183,7 +187,7 @@
                                     min="0"
                                     step="1"
                                     bind:value={scores[vidx][hidx]}
-                                    placeholder={`Rodada ${hidx + 1}`}
+                                    placeholder={players[vidx]}
                                     id={`${vidx} ${hidx}`}
                                 />
                             </div>
@@ -222,6 +226,21 @@
 </main>
 
 <style>
+
+    #title {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    #title h1 {
+        font-weight: bolder;
+        font-size: 1.5rem;
+    }
+
+    #title span {
+        font-size: 0.9em;
+    }
+
     button {
         cursor: pointer;
         background-color: white;
@@ -234,8 +253,7 @@
         transition: all 200ms;
     }
 
-    button:hover,
-    button:active {
+    button:hover {
         background-color: black;
         color: white;
     }
@@ -369,7 +387,7 @@
 
     tbody tr {
         height: 40px;
-        background-color: #a0eab8;
+        background-color: #a3d6b4;
     }
 
     thead tr th {

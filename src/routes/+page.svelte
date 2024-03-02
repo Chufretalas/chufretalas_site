@@ -11,6 +11,10 @@
     const sampleProjects = toShuffled(PROJECTS);
 
     let aboutReadMore = false;
+
+    //TODO: make a section to link to /coisas and /jogos
+    //TODO: make a footer
+    //TODO: avoid loading game assets when not on a computer
 </script>
 
 <Navbar />
@@ -137,6 +141,7 @@
     .projects_button_wrapper {
         display: flex;
         justify-content: center;
+        margin: 15px 0;
     }
 
     .projects_button {

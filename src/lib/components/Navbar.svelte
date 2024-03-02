@@ -1,3 +1,8 @@
+<script lang="ts">
+    //TODO: make the navbar collapsable on mobile so you can show all links without it looking horrible
+</script>
+
+
 <nav>
     <div>
         <a href="/">
@@ -8,10 +13,12 @@
     <div class="navigation_buttons">
         <a href="/">Home</a>
         <a href="/projetos">Projetos</a>
-        <a href="/jogos/falling_sand" class="only_on_computer">Falling Sand ⌛</a>
-        <a href="/jogos/scramble_ghosts" class="only_on_computer">Scramble Ghosts 👻</a>
+        <a href="/jogos" class="only_on_computer">Jogos</a>
+        <a href="/coisas">Coisas</a>
         <a href="https://github.com/Chufretalas" target="_blank">Github</a>
-        <a href="https://www.linkedin.com/in/marco-benevenuto" target="_blank">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/marco-benevenuto" target="_blank"
+            >LinkedIn</a
+        >
     </div>
 </nav>
 

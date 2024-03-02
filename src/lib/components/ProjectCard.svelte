@@ -2,10 +2,11 @@
     import type { IProject } from "$lib/data/projects";
     import CoolBox from "./CoolBox.svelte";
     export let project: IProject;
+    export let accentColor = "black";
 </script>
 
 <div class="wrapper">
-    <CoolBox>
+    <CoolBox accentColor={accentColor}>
         <div class="inner_wrapper">
             <span class="title">{project.title}</span>
             <div class="tags_and_img">

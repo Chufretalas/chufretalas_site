@@ -185,7 +185,7 @@
                                     min="0"
                                     step="1"
                                     bind:value={scores[vidx][hidx]}
-                                    placeholder={players[vidx]}
+                                    placeholder={players[vidx] === "" ? "..." : players[vidx] + " " + `${hidx+1}`}
                                     id={`${vidx} ${hidx}`}
                                 />
                             </div>

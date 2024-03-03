@@ -13,6 +13,7 @@
 
     //TODO: make a section to link to /coisas and /jogos
     //TODO: avoid loading game assets when not on a computer
+    //TODO: add a <meta> tag to every page to make the SEO really powerful adn stuff https://developer.chrome.com/docs/lighthouse/seo/meta-description?utm_source=lighthouse&utm_medium=devtools&hl=pt-br
 </script>
 
 <main>

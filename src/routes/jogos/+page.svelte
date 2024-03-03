@@ -7,7 +7,6 @@
     //TODO: make a game card with a bigger image, no tags and no repo link, can use the same data as the project card
 </script>
 
-<Navbar />
 <main>
     <CoolBox title="🎮 Jogos 📺">
         <span

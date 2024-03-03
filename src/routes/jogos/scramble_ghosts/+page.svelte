@@ -1,9 +1,7 @@
 <script lang="ts">
     import CoolBox from "$lib/components/CoolBox.svelte";
-    import Navbar from "$lib/components/Navbar.svelte";
 </script>
 
-<Navbar />
 <main>
     <CoolBox title="Scramble Ghosts v0.4.0 (web)">
         <div id="inner_wrapper">

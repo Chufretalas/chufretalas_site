@@ -7,7 +7,6 @@
     import toShuffled from "$lib/utils/shuffle";
 </script>
 
-<Navbar />
 <main>
     <CoolBox title="Todos (ou quase) os meus projetos">
         <ul>

@@ -1,7 +1,6 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
-    import Navbar from "$lib/components/Navbar.svelte";
     import matrix2DToString from "$lib/utils/matrix2DToString";
     import range from "$lib/utils/range";
     import { onMount } from "svelte";
@@ -95,7 +94,6 @@
     <title>Chufretalas - Double Coisa</title>
 </svelte:head>
 
-<Navbar />
 <main>
     <div id="title">
         <h1>Double Coisa</h1>

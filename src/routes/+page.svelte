@@ -1,6 +1,5 @@
 <script>
     import CoolBox from "$lib/components/CoolBox.svelte";
-    import Navbar from "$lib/components/Navbar.svelte";
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import VeryNiceLookingButton from "$lib/components/VeryNiceLookingButton.svelte";
     import GithubLogo from "$lib/components/svgs/GithubLogo.svelte";
@@ -13,11 +12,9 @@
     let aboutReadMore = false;
 
     //TODO: make a section to link to /coisas and /jogos
-    //TODO: make a footer
     //TODO: avoid loading game assets when not on a computer
 </script>
 
-<Navbar />
 <main>
     <section class="section_left">
         <VeryNiceLookingButton

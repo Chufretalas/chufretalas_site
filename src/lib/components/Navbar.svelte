@@ -1,25 +1,33 @@
 <script lang="ts">
-    //TODO: make the navbar collapsable on mobile so you can show all links without it looking horrible
-</script>
+    import { slide } from "svelte/transition";
+    import NavbarLinks from "./NavbarLinks.svelte";
 
+    let menuExpanded = false;
+</script>
 
 <nav>
     <div>
         <a href="/">
             <h1>Chufretalas</h1>
         </a>
-        <span>por Marco Antonio</span>
+        <span style:margin-left={"10px"}>por Marco Antonio</span>
     </div>
-    <div class="navigation_buttons">
-        <a href="/">Home</a>
-        <a href="/projetos">Projetos</a>
-        <a href="/jogos" class="only_on_computer">Jogos</a>
-        <a href="/coisas">Coisas</a>
-        <a href="https://github.com/Chufretalas" target="_blank">Github</a>
-        <a href="https://www.linkedin.com/in/marco-benevenuto" target="_blank"
-            >LinkedIn</a
-        >
+    <div class="navigation_buttons only_on_computer" transition:slide>
+        <NavbarLinks />
     </div>
+    {#if menuExpanded}
+        <div class="navigation_buttons only_on_mobile" transition:slide>
+            <NavbarLinks />
+        </div>
+    {/if}
+    <button
+        class="expand_button only_on_mobile"
+        class:reverse_column={menuExpanded}
+        on:click={() => (menuExpanded = !menuExpanded)}
+    >
+        <span>Menu</span>
+        <span>{menuExpanded ? "︿" : "﹀"}</span>
+    </button>
 </nav>
 
 <style>
@@ -37,9 +45,6 @@
         font-size: 2rem;
         color: white;
     }
-    nav span {
-        margin-left: 10px;
-    }
 
     .navigation_buttons::before {
         content: "|";
@@ -55,20 +60,38 @@
         row-gap: 10px;
     }
 
-    .navigation_buttons a {
+    .expand_button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        background: none;
+        border: none;
         color: white;
-        text-decoration: underline;
-        transition: all 200ms;
+        font-weight: bolder;
     }
 
-    .navigation_buttons a:hover {
-        color: blue;
+    .reverse_column {
+        flex-direction: column-reverse;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .only_on_mobile {
+            display: none;
+        }
     }
 
     @media only screen and (max-width: 768px) {
         nav {
             flex-direction: column;
             row-gap: 10px;
+        }
+
+        .navigation_buttons {
+            flex-direction: column;
+            align-items: center;
+            row-gap: 15px;
+            flex-wrap: nowrap;
         }
 
         .navigation_buttons::before {

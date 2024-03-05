@@ -69,6 +69,7 @@
         border: none;
         color: white;
         font-weight: bolder;
+        margin-top: 8px;
     }
 
     .reverse_column {
@@ -84,10 +85,10 @@
     @media only screen and (max-width: 768px) {
         nav {
             flex-direction: column;
-            row-gap: 10px;
         }
 
         .navigation_buttons {
+            margin-top: 8px;
             flex-direction: column;
             align-items: center;
             row-gap: 15px;

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import CoisaCard from "$lib/components/CoisaCard.svelte";
     import CoolBox from "$lib/components/CoolBox.svelte";
 </script>
 
@@ -14,20 +15,13 @@
         >
         <ul>
             <div class="projects_wrapper">
-                <div class="coisa_card">
-                    <CoolBox accentColor="#f8ce7f">
-                        <div class="coisa_inner_wrapper">
-                            <span class="coisa_title">Double Coisa</span>
-                            <p>
-                                Um tabela para contar os pontos do jogo double
-                                9, double 12, ou o double que for.
-                            </p>
-                            <a class="coisa_link" href="/coisas/double_coisa"
-                                >Ver a coisa</a
-                            >
-                        </div>
-                    </CoolBox>
-                </div>
+                <CoisaCard
+                    title="Double Coisa"
+                    description="Um tabela para contar os pontos do jogo double 9, double 12, ou
+                                o double que for."
+                    link="/coisas/double_coisa"
+                    accentColor="#f8ce7f"
+                />
             </div>
         </ul>
     </CoolBox>
@@ -56,38 +50,5 @@
             width: 100%;
             margin: 0 auto;
         }
-    }
-
-    /* TODO: move this to components when possible */
-    /* Coisa card stuff */
-    .coisa_card {
-        width: 400px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .coisa_title {
-        font-size: larger;
-        font-weight: bolder;
-        text-decoration: underline;
-    }
-
-    .coisa_link {
-        display: block;
-        margin: 10px auto;
-        width: 40%;
-        background-color: white;
-        color: black;
-        border: 3px solid black;
-        font-weight: bold;
-        text-align: center;
-        padding: 4px;
-        transition: all 200ms;
-    }
-
-    .coisa_link:hover {
-        background-color: black;
-        color: white;
     }
 </style>

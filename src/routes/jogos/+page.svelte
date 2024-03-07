@@ -1,5 +1,6 @@
 <script lang="ts">
     import CoolBox from "$lib/components/CoolBox.svelte";
+    import GameCard from "$lib/components/GameCard.svelte";
     import Navbar from "$lib/components/Navbar.svelte";
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import { PROJECTS } from "$lib/data/projects";
@@ -15,8 +16,9 @@
         >
         <ul>
             <div class="projects_wrapper">
-                <ProjectCard accentColor="#19e3dc" project={PROJECTS[2]} />
-                <ProjectCard
+                
+                <GameCard accentColor="#19e3dc" project={PROJECTS[2]} />
+                <GameCard
                     accentColor="#e31919"
                     project={PROJECTS[1]}
                 />

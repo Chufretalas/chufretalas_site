@@ -159,6 +159,12 @@
         color: white;
     }
 
+    
+    .section_middle {
+            display: flex;
+            flex-direction: column;
+        }
+
     @media only screen and (max-width: 768px) {
         main {
             display: block;
@@ -193,5 +199,6 @@
             color: black;
             font-weight: bolder;
         }
+
     }
 </style>

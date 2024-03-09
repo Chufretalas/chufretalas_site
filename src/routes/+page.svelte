@@ -1,5 +1,7 @@
 <script>
+    import CoisaCard from "$lib/components/CoisaCard.svelte";
     import CoolBox from "$lib/components/CoolBox.svelte";
+    import GameCard from "$lib/components/GameCard.svelte";
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import VeryNiceLookingButton from "$lib/components/VeryNiceLookingButton.svelte";
     import GithubLogo from "$lib/components/svgs/GithubLogo.svelte";
@@ -11,7 +13,6 @@
 
     let aboutReadMore = false;
 
-    //TODO: make a section to link to /coisas and /jogos
     //TODO: avoid loading game assets when not on a computer
     //TODO: add a <meta> tag to every page to make the SEO really powerful adn stuff https://developer.chrome.com/docs/lighthouse/seo/meta-description?utm_source=lighthouse&utm_medium=devtools&hl=pt-br
 </script>
@@ -40,9 +41,9 @@
                     <p>
                         Meu nome é Marco Antonio Benevenuto de Oliveira. Sou um
                         programador brasileiro que ama se desafiar e resolver
-                        problemas, desde arrumar algum CSS quebrado no
-                        frontend até aprender assembly RISC-V para usar uma
-                        plaquinha do aliexpress quase sem documentação.
+                        problemas, desde arrumar algum CSS quebrado no frontend
+                        até aprender assembly RISC-V para usar uma plaquinha do
+                        aliexpress quase sem documentação.
                     </p>
                     <p class:hide_show_more={!aboutReadMore}>
                         Sou técnico em eletrônica formado pelo IFSP em 2021,
@@ -75,14 +76,17 @@
                 >
             </div>
         </CoolBox>
-        <CoolBox title="Meus projetos" accentColor="black">
+        <CoolBox title="Meus projetos" accentColor="#39bed3">
             <div class="sample_projects_wrapper">
                 <ProjectCard project={sampleProjects[0]} />
                 <ProjectCard project={sampleProjects[1]} />
             </div>
-            <div class="projects_button_wrapper">
-                <a href="/projetos" class="projects_button">Todos os projetos</a
-                >
+            <a href="/projetos" class="bw_button">Todos os projetos</a>
+        </CoolBox>
+        <CoolBox title="Outras páginas 👍" accentColor="red">
+            <div class="other_pages_inner_wrapper">
+                <a href="/jogos" class="bw_button">🎮 Jogos 📺</a>
+                <a href="/coisas" class="bw_button">🚀 Coisas 🪑</a>
             </div>
         </CoolBox>
     </section>
@@ -136,13 +140,10 @@
         flex-wrap: wrap;
     }
 
-    .projects_button_wrapper {
-        display: flex;
-        justify-content: center;
-        margin: 15px 0;
-    }
-
-    .projects_button {
+    .bw_button {
+        display: block;
+        width: fit-content;
+        margin: 8px auto;
         background-color: white;
         color: black;
         border: 3px solid black;
@@ -154,16 +155,26 @@
         transition: all 200ms;
     }
 
-    .projects_button:hover {
+    .bw_button:hover {
         background-color: black;
         color: white;
     }
 
-    
     .section_middle {
-            display: flex;
-            flex-direction: column;
-        }
+        display: flex;
+        flex-direction: column;
+    }
+
+    .other_pages_inner_wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .other_pages_inner_wrapper a {
+        margin: 10px;
+    }
 
     @media only screen and (max-width: 768px) {
         main {

@@ -1,11 +1,8 @@
 <script lang="ts">
     import CoolBox from "$lib/components/CoolBox.svelte";
     import GameCard from "$lib/components/GameCard.svelte";
-    import Navbar from "$lib/components/Navbar.svelte";
-    import ProjectCard from "$lib/components/ProjectCard.svelte";
     import { PROJECTS } from "$lib/data/projects";
 
-    //TODO: make a game card with a bigger image, no tags and no repo link, can use the same data as the project card
 </script>
 
 <main>

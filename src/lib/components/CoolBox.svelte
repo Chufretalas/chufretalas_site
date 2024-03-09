@@ -1,9 +1,10 @@
 <script lang="ts">
     export let title = "";
     export let accentColor = "black";
+    export let width = ""
 </script>
 
-<div class="main_sect" style:box-shadow={`7px 7px ${accentColor}`}>
+<div class="main_sect" style:box-shadow={`7px 7px ${accentColor}`} style:width={width}>
     {#if title}
         <h2 class="title">{title}</h2>
     {/if}

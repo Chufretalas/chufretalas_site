@@ -22,6 +22,12 @@
                     link="/coisas/double_coisa"
                     accentColor="#f8ce7f"
                 />
+                <CoisaCard
+                    title="Letter Coisa"
+                    description="Um sorteador de letra aleatória robusto e simples de usar."
+                    link="/coisas/letter_coisa"
+                    accentColor="#267cdd"
+                />
             </div>
         </ul>
     </CoolBox>

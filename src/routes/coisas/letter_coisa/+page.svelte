@@ -41,7 +41,7 @@
     function getSortedLetterArray(
         letterMap: Map<string, number>,
     ): [string, number][] {
-        return Array.from(letterMap.entries()).toSorted(
+        return Array.from(letterMap.entries()).sort(
             ([letterA, probA], [letterB, probB]) =>
                 letterA == letterB ? 0 : letterA < letterB ? -1 : 1,
         ) as [string, number][];

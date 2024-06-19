@@ -21,6 +21,16 @@
         .fill(undefined)
         .map(() => new Array(rounds));
 
+    $: totals = scores
+        .map((row, idx) => [
+            idx,
+            row.reduce((acc, crr) => {
+                crr = isNaN(crr) ? 0 : +crr;
+                return acc + crr;
+            }, 0),
+        ])
+        .toSorted((a, b) => a[1] - b[1]);
+
     $: {
         rounds;
         nPlayers;
@@ -70,7 +80,7 @@
             for (let i = 0; i < nPlayers; i++) {
                 newScores.push([]);
                 for (let j = 0; j < rounds; j++) {
-                    console.log(split[idx]);
+                    // console.log(split[idx]);
                     newScores[i].push(
                         split[idx] === "<nil>" ? undefined : +split[idx],
                     );
@@ -83,11 +93,6 @@
 
         isMounted = true;
     });
-
-    //TODO: make an indication to whoever is winning
-    //TODO: show a leaderboard when all scores are filled
-
-    //TODO: make a /coisas page and show this thing
 </script>
 
 <svelte:head>
@@ -97,7 +102,9 @@
 <main>
     <div id="title">
         <h1>Double Coisa</h1>
-        <span>Marcador de pontos para o jogo double 9, 12 e qualquer outra versão</span>
+        <span
+            >Marcador de pontos para o jogo double 9, 12 e qualquer outra versão</span
+        >
     </div>
     <form
         id="config_form"
@@ -160,6 +167,7 @@
                     <th>Rodada {roundNumber}</th>
                 {/each}
                 <th>Total</th>
+                <th>Resultado</th>
             </tr>
         </thead>
         <tbody>
@@ -185,7 +193,9 @@
                                     min="0"
                                     step="1"
                                     bind:value={scores[vidx][hidx]}
-                                    placeholder={players[vidx] === "" ? "..." : players[vidx] + " " + `${hidx+1}`}
+                                    placeholder={players[vidx] === ""
+                                        ? "..."
+                                        : players[vidx] + " " + `${hidx + 1}`}
                                     id={`${vidx} ${hidx}`}
                                 />
                             </div>
@@ -196,12 +206,16 @@
                             <input
                                 type="number"
                                 disabled
-                                value={scores[vidx].reduce(
-                                    (acc, crr) => acc + crr,
-                                    0,
-                                )}
-                                placeholder={`Jogador ${vidx + 1}`}
+                                value={totals.find((v) => v[0] === vidx)?.[1]}
+                                placeholder="0"
                             />
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <div class="result_div">
+                                {`${totals.findIndex((v) => v[0] === vidx) + 1}º ${players[vidx]}`}
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -224,7 +238,6 @@
 </main>
 
 <style>
-
     #title {
         text-align: center;
         margin-top: 10px;
@@ -318,7 +331,6 @@
         font-size: small;
     }
 
-    
     @media only screen and (max-width: 768px) {
         #config_form {
             width: 90%;
@@ -397,7 +409,8 @@
         font-size: 0.8rem;
     }
 
-    td input {
+    td input,
+    .result_div {
         width: 90px;
         height: 25px;
         border: none;
@@ -412,6 +425,15 @@
     td input.name_input {
         width: 110px;
         font-size: 0.9rem;
+    }
+
+    .result_div {
+        color: black;
+        font-weight: bolder;
+        font-size: 1rem;
+        width: 95%;
+        height: 30px;
+        border-radius: 5px;
     }
 
     /* End Table styles */

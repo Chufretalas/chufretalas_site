@@ -48,6 +48,10 @@
     }
 
     function pickLetter() {
+        if (available.size === 0) {
+            pickedLetter = "";
+            return;
+        }
         let pool: string[] = [];
         available.forEach((prob, letter) => {
             for (let i = 0; i < prob; i++) {

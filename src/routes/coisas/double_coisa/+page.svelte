@@ -29,7 +29,7 @@
                 return acc + crr;
             }, 0),
         ])
-        .toSorted((a, b) => a[1] - b[1]);
+        .sort((a, b) => a[1] - b[1]);
 
     $: {
         rounds;

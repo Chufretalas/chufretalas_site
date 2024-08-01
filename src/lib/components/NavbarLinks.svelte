@@ -1,10 +1,11 @@
 <script lang="ts">
+    import {t} from "$langs/stores"
 </script>
 
 <a href="/">Home</a>
-<a href="/projetos">Projetos</a>
-<a href="/jogos">Jogos</a>
-<a href="/coisas">Coisas</a>
+<a href="/projetos">{$t("navbar.projects")}</a>
+<a href="/jogos">{$t("navbar.games")}</a>
+<a href="/coisas">{$t("navbar.things")}</a>
 <a href="https://github.com/Chufretalas" target="_blank">Github</a>
 <a href="https://www.linkedin.com/in/marco-benevenuto" target="_blank"
     >LinkedIn</a

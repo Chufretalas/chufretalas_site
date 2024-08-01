@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { IProject } from "$lib/data/projects";
     import CoolBox from "./CoolBox.svelte";
+    import { t } from "$langs/stores";
     export let project: IProject;
     export let accentColor = "black";
 </script>
@@ -28,7 +29,7 @@
             </div>
             <div class="external_buttons">
                 {#if project.repoURL}
-                    <a href={project.repoURL} target="_blank">Repositório</a>
+                    <a href={project.repoURL} target="_blank">{$t("project_card.repo_button")}</a>
                 {/if}
                 {#if project.deployURL}
                     <a href={project.deployURL} target="_blank">Deployment</a>

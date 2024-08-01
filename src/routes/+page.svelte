@@ -1,18 +1,16 @@
 <script>
-    import CoisaCard from "$lib/components/CoisaCard.svelte";
     import CoolBox from "$lib/components/CoolBox.svelte";
-    import GameCard from "$lib/components/GameCard.svelte";
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import VeryNiceLookingButton from "$lib/components/VeryNiceLookingButton.svelte";
     import GithubLogo from "$lib/components/svgs/GithubLogo.svelte";
     import LinkedInLogo from "$lib/components/svgs/LinkedInLogo.svelte";
     import { PROJECTS } from "$lib/data/projects";
     import toShuffled from "$lib/utils/shuffle";
+    import { t } from "$langs/stores";
 
     const sampleProjects = toShuffled(PROJECTS);
 
     let aboutReadMore = false;
-
     //TODO: avoid loading game assets when not on a computer
     //TODO: add a <meta> tag to every page to make the SEO really powerful adn stuff https://developer.chrome.com/docs/lighthouse/seo/meta-description?utm_source=lighthouse&utm_medium=devtools&hl=pt-br
 </script>
@@ -35,31 +33,17 @@
         </VeryNiceLookingButton>
     </section>
     <section class="section_middle">
-        <CoolBox title="Sobre mim" accentColor="#bdf5ac">
+        <CoolBox title={$t("home.about_me.title")} accentColor="#bdf5ac">
             <div class="about_section_content">
                 <div class="about_section_text">
                     <p>
-                        Meu nome é Marco Antonio Benevenuto de Oliveira. Sou um
-                        programador brasileiro que ama se desafiar e resolver
-                        problemas, desde arrumar algum CSS quebrado no frontend
-                        até aprender assembly RISC-V para usar uma plaquinha do
-                        aliexpress quase sem documentação.
+                        {$t("home.about_me.p1")}
                     </p>
                     <p class:hide_show_more={!aboutReadMore}>
-                        Sou técnico em eletrônica formado pelo IFSP em 2021,
-                        sendo que atualmente estou no meu segundo ano na UFABC
-                        em busca do meu diploma de bachrelado em ciência da
-                        computação.
+                        {$t("home.about_me.p2")}
                     </p>
                     <p class:hide_show_more={!aboutReadMore}>
-                        Por conta da pandemia, fiquei de janeiro de 2022 até
-                        setembro com tempo livre antes da faculdade iniciar as
-                        aula. Foi esse tempo que usei para estudar o máximo que
-                        podia sobre desenvolvimento. Estudei Java, Kotlin, Dart
-                        (Flutter), Python, Javascript, HTML, CSS e tudo mais o
-                        que pude. Dessa forma, mesmo depois de começarem as
-                        atividades da faculdade eu continuei me esforçando ao
-                        máximo, estudando e fazendo diversos projetos.
+                        {$t("home.about_me.p3")}
                     </p>
                 </div>
                 <div
@@ -67,26 +51,34 @@
                     class:hide_show_more={!aboutReadMore}
                 >
                     <img src="/profile_picture.webp" alt="minha foto" />
-                    <span>↑ Eu ↑</span>
+                    <span>{$t("home.about_me.image_description")}</span>
                 </div>
                 <button
                     on:click={() => (aboutReadMore = !aboutReadMore)}
                     id="about_show_more_button"
-                    >{aboutReadMore ? "Mostrar Menos" : "Mostrar Mais"}</button
+                    >{aboutReadMore
+                        ? $t("home.about_me.show_less")
+                        : $t("home.about_me.show_more")}</button
                 >
             </div>
         </CoolBox>
-        <CoolBox title="Meus projetos" accentColor="#39bed3">
+        <CoolBox title={$t("home.my_projects.title")} accentColor="#39bed3">
             <div class="sample_projects_wrapper">
                 <ProjectCard project={sampleProjects[0]} />
                 <ProjectCard project={sampleProjects[1]} />
             </div>
-            <a href="/projetos" class="bw_button">Todos os projetos</a>
+            <a href="/projetos" class="bw_button"
+                >{$t("home.my_projects.button")}</a
+            >
         </CoolBox>
-        <CoolBox title="Outras páginas 👍" accentColor="red">
+        <CoolBox title="{$t('home.other_pages.title')} 👍" accentColor="red">
             <div class="other_pages_inner_wrapper">
-                <a href="/jogos" class="bw_button">🎮 Jogos 📺</a>
-                <a href="/coisas" class="bw_button">🚀 Coisas 🪑</a>
+                <a href="/jogos" class="bw_button"
+                    >🎮 {$t("home.other_pages.games_button")} 📺</a
+                >
+                <a href="/coisas" class="bw_button"
+                    >🚀 {$t("home.other_pages.things_button")} 🪑</a
+                >
             </div>
         </CoolBox>
     </section>
@@ -210,6 +202,5 @@
             color: black;
             font-weight: bolder;
         }
-
     }
 </style>

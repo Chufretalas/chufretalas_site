@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { IProject } from "$lib/data/projects";
     import CoolBox from "./CoolBox.svelte";
+    import { t } from "$langs/stores";
     export let project: IProject;
     export let accentColor = "black";
 </script>
@@ -14,7 +15,7 @@
                 src={project.img}
                 alt={`${project.title}'s preview image`}
             />
-            <a href={project.deployURL}>Visitar Jogo</a>
+            <a href={project.deployURL}>{$t("game_card.button")}</a>
             <p class="description">
                 {project.description}
             </p>

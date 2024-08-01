@@ -1,6 +1,7 @@
 <script lang="ts">
     import { slide } from "svelte/transition";
     import NavbarLinks from "./NavbarLinks.svelte";
+    import { t, locale, locales } from "$langs/stores";
 
     let menuExpanded = false;
 </script>
@@ -10,7 +11,7 @@
         <a href="/">
             <h1>Chufretalas</h1>
         </a>
-        <span style:margin-left={"10px"}>por Marco Antonio</span>
+        <span style:margin-left={"10px"}>{$t("navbar.by")} Marco Antonio</span>
     </div>
     <div class="navigation_buttons only_on_computer" transition:slide>
         <NavbarLinks />
@@ -28,6 +29,11 @@
         <span>Menu</span>
         <span>{menuExpanded ? "︿" : "﹀"}</span>
     </button>
+    <select bind:value={$locale} class="locale_selector">
+        {#each locales as l}
+            <option value={l}>{l}</option>
+        {/each}
+    </select>
 </nav>
 
 <style>
@@ -74,6 +80,12 @@
 
     .reverse_column {
         flex-direction: column-reverse;
+    }
+
+    .locale_selector {
+        position: absolute;
+        right: 20px;
+        height: 2rem;
     }
 
     @media only screen and (min-width: 768px) {

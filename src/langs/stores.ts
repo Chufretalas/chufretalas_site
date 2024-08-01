@@ -1,8 +1,10 @@
 import { derived, writable } from "svelte/store";
 import translations from "./translations";
+import { browser } from "$app/environment";
 
-//TODO: persist this on page reload
-export const locale = writable("en");
+const initialValue = browser ? ["en", "pt-BR"].includes(navigator.language) ? navigator.language : "en" : "en"
+
+export const locale = writable(initialValue);
 export const locales = Object.keys(translations);
 
 function translate(locale: string, key: string) {

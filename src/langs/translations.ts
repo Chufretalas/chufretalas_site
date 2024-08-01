@@ -33,7 +33,7 @@ export default {
             repo_button: "Repository"
         }
     },
-    pt: {
+    "pt-BR": {
         home: {
             about_me: {
                 title: "Sobre mim",

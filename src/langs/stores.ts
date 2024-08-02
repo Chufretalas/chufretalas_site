@@ -4,11 +4,11 @@ import { browser } from "$app/environment";
 
 const initialValue = browser ? ["en", "pt-BR"].includes(navigator.language) ? navigator.language : "en" : "en"
 
-export const locale = writable(initialValue);
+export const locale = writable<"en" | "pt-BR">(initialValue as "en" | "pt-BR");
 export const locales = Object.keys(translations);
 
 function translate(locale: string, key: string) {
-    let text = translations[locale]
+    let text = (translations as any)[locale]
     key.split(".").forEach((key) => {
         text = text[key]
     })

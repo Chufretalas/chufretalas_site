@@ -77,7 +77,7 @@
                     >🎮 {$t("home.other_pages.games_button")} 📺</a
                 >
                 <a href="/coisas" class="bw_button"
-                    >🚀 {$t("home.other_pages.things_button")} 🪑</a
+                    >🚀 {$t("home.other_pages.coisas_button")} 🪑</a
                 >
             </div>
         </CoolBox>

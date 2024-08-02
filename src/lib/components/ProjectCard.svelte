@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { IProject } from "$lib/data/projects";
     import CoolBox from "./CoolBox.svelte";
-    import { t } from "$langs/stores";
+    import { t, locale } from "$langs/stores";
     export let project: IProject;
     export let accentColor = "black";
 </script>
@@ -36,7 +36,7 @@
                 {/if}
             </div>
             <p class="description">
-                {project.description}
+                {project.description[$locale]}
             </p>
         </div>
     </CoolBox>

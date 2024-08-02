@@ -2,23 +2,16 @@
     import CoolBox from "$lib/components/CoolBox.svelte";
     import GameCard from "$lib/components/GameCard.svelte";
     import { PROJECTS } from "$lib/data/projects";
-
+    import { t } from "$langs/stores";
 </script>
 
 <main>
-    <CoolBox title="🎮 Jogos 📺">
-        <span
-            >Para você que não quer o trabalho de baixar a versão normal, seguem
-            versões web de alguns jogos/simuladores que fiz</span
-        >
+    <CoolBox title="🎮 {$t('games.title')} 📺">
+        <span>{$t("games.description")}</span>
         <ul>
             <div class="projects_wrapper">
-                
                 <GameCard accentColor="#19e3dc" project={PROJECTS[2]} />
-                <GameCard
-                    accentColor="#e31919"
-                    project={PROJECTS[1]}
-                />
+                <GameCard accentColor="#e31919" project={PROJECTS[1]} />
             </div>
         </ul>
     </CoolBox>

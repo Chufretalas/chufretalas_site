@@ -1,33 +1,19 @@
 <script lang="ts">
     import CoisaCard from "$lib/components/CoisaCard.svelte";
     import CoolBox from "$lib/components/CoolBox.svelte";
+    import { t } from "$langs/stores";
+    import COISAS from "$lib/data/coisas";
 </script>
 
 <main>
-    <CoolBox title="🚀 Coisas 🪑">
-        <span
-            >Coisas que precisavam de um lugar para morar, mas não mereciam um
-            projeto separado</span
-        >
-        <span style:font-size="small"
-            >(Não espere consistência estética entre as coisas e o resto do
-            site)</span
-        >
+    <CoolBox title="🚀 {$t('coisas.title')} 🪑">
+        <span>{$t("coisas.description")}</span>
+        <span style:font-size="small">{$t("coisas.sub_description")}</span>
         <ul>
             <div class="projects_wrapper">
-                <CoisaCard
-                    title="Double Coisa"
-                    description="Um tabela para contar os pontos do jogo double 9, double 12, ou
-                                o double que for."
-                    link="/coisas/double_coisa"
-                    accentColor="#f8ce7f"
-                />
-                <CoisaCard
-                    title="Letter Coisa"
-                    description="Um sorteador de letra aleatória robusto e simples de usar."
-                    link="/coisas/letter_coisa"
-                    accentColor="#267cdd"
-                />
+                {#each COISAS as coisa}
+                    <CoisaCard {coisa} />
+                {/each}
             </div>
         </ul>
     </CoolBox>

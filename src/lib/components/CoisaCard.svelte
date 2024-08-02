@@ -1,19 +1,18 @@
 <script lang="ts">
+    import { t, locale } from "$langs/stores";
+    import type { ICoisa } from "$lib/data/coisas";
     import CoolBox from "./CoolBox.svelte";
-    export let accentColor = "black"
-    export let title: string;
-    export let description: string;
-    export let link: string;
+    export let coisa: ICoisa
 </script>
 
 <div class="coisa_card">
-    <CoolBox accentColor={accentColor}>
+    <CoolBox accentColor={coisa.accentColor}>
         <div class="coisa_inner_wrapper">
-            <span class="coisa_title">{title}</span>
+            <span class="coisa_title">{coisa.title}</span>
             <p>
-                {description}
+                {coisa.description[$locale]}
             </p>
-            <a class="coisa_link" href={link}>Ver a coisa</a>
+            <a class="coisa_link" href={coisa.link}>{$t("coisa_card.button")}</a>
         </div>
     </CoolBox>
 </div>

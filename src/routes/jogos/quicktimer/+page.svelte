@@ -11,7 +11,7 @@
         down: false,
     };
 
-    let buttonIndicators = {
+    let testerIndicators = {
         left: false,
         right: false,
         up: false,
@@ -19,11 +19,33 @@
     };
 
     function pressed(direction: "left" | "right" | "up" | "down") {
-        console.log(direction);
-        buttonIndicators[direction] = true;
+        testerIndicators[direction] = true;
         setTimeout(() => {
-            buttonIndicators[direction] = false;
-        }, 100);
+            testerIndicators[direction] = false;
+        }, 150);
+    }
+
+    function keyboardHandler(e: KeyboardEvent) {
+        if (e.code === "ArrowLeft") {
+            e.preventDefault();
+            pressed("left");
+        }
+        if (e.code === "ArrowRight") {
+            e.preventDefault();
+            pressed("right");
+        }
+        if (e.code === "ArrowUp") {
+            e.preventDefault();
+            pressed("up");
+        }
+        if (e.code === "ArrowDown") {
+            e.preventDefault();
+            pressed("down");
+        }
+
+        if (e.code === "Space") {
+            e.preventDefault();
+        }
     }
 
     function loop() {
@@ -34,7 +56,6 @@
 
         const gp = gamepads[0]!;
         // controller mapping https://w3c.github.io/gamepad/#
-        // console.log(gp.buttons[2].pressed)
         let leftPressed = gp.buttons[2].pressed || gp.buttons[14].pressed;
         let rightPressed = gp.buttons[1].pressed || gp.buttons[15].pressed;
         let upPressed = gp.buttons[3].pressed || gp.buttons[12].pressed;
@@ -65,20 +86,73 @@
 <svelte:window
     on:gamepadconnected={loop}
     on:gamepaddisconnected={() => cancelAnimationFrame(animation)}
+    on:keydown={keyboardHandler}
 />
 
 <main>
     <CoolBox title="Quicktimer" accentColor="#fcdf03">
-        <div class:pressed={buttonIndicators.left}>🡐</div>
-        <div class:pressed={buttonIndicators.right}>🡒</div>
-        <div class:pressed={buttonIndicators.up}>🡑</div>
-        <div class:pressed={buttonIndicators.down}>🡓</div>
+        <section class="intro_and_tester">
+            <p>
+                Press space or down on a controller and try to complete the
+                sequence as fast as you can!
+            </p>
+            <p>
+                This accepts the arrow keys and both the dpad and main buttons
+                from a controller as input. Use this tester below to check
+            </p>
+            <div class="tester_wrapper">
+                <span class:pressed={testerIndicators.left} class="tester"
+                    >🡐</span
+                >
+                <span class:pressed={testerIndicators.right} class="tester"
+                    >🡒</span
+                >
+                <span class:pressed={testerIndicators.up} class="tester">🡑</span
+                >
+                <span class:pressed={testerIndicators.down} class="tester"
+                    >🡓</span
+                >
+            </div>
+        </section>
     </CoolBox>
 </main>
 
 <style>
+    .intro_and_tester {
+        padding-top: 10px;
+    }
+
+    .intro_and_tester p {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .tester_wrapper {
+        display: flex;
+        justify-content: center;
+        column-gap: 4px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .tester {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid black;
+        font-size: 1.8rem;
+        width: 1.7rem;
+        height: 1.7rem;
+        font-weight: 900;
+        padding: 5px;
+        border-radius: 9999999px;
+        background-color: white;
+    }
+
     .pressed {
-        color: greenyellow;
-        font-size: 1rem;
+        color: white;
+        border-color: white;
+        background-color: black;
+        transition: all 50ms;
     }
 </style>

@@ -3,6 +3,18 @@
     import GameCard from "$lib/components/GameCard.svelte";
     import { PROJECTS } from "$lib/data/projects";
     import { t } from "$langs/stores";
+
+    const QUICKTIMER = {
+        title: "Quicktimer",
+        repoURL: "",
+        deployURL: "/jogos/quicktimer",
+        tags: [],
+        img: "/project_thumbnails/thumbnail_quicktimer.webp",
+        description: {
+            en: "A reaction time tester made in svelte.",
+            "pt-BR": "Um teste de tempo de reação feito em svelte."
+        },
+    }
 </script>
 
 <main>
@@ -12,6 +24,7 @@
             <div class="projects_wrapper">
                 <GameCard accentColor="#19e3dc" project={PROJECTS[2]} />
                 <GameCard accentColor="#e31919" project={PROJECTS[1]} />
+                <GameCard accentColor="#49ff42" project={QUICKTIMER} />
             </div>
         </ul>
     </CoolBox>

@@ -1,7 +1,27 @@
 <script lang="ts">
     import CoolBox from "$lib/components/CoolBox.svelte";
+    import Arrow from "$lib/components/quicktimer/Arrow.svelte";
+    import {
+        ArrowDirection,
+        ArrowState,
+        GameState,
+        type IArrowThingy,
+    } from "$lib/types/quicktimer";
+    import { fade } from "svelte/transition";
 
     let animation: number;
+
+    let targetIdx = 0;
+
+    let startTime = 0;
+
+    let endTime = 0;
+
+    let canRestart = true;
+
+    let gameState: GameState = GameState.preGame;
+
+    let arrowThings: IArrowThingy[] = [];
 
     let buttonsBuffer = {
         // here I am going to consider the arrows and the buttons as the same thing
@@ -18,33 +38,97 @@
         down: false,
     };
 
-    function pressed(direction: "left" | "right" | "up" | "down") {
-        testerIndicators[direction] = true;
+    function startGame() {
+        const things: IArrowThingy[] = [];
+        for (let i = 0; i < 6; i++) {
+            const direction = [
+                ArrowDirection.left,
+                ArrowDirection.right,
+                ArrowDirection.up,
+                ArrowDirection.down,
+            ][Math.floor(Math.random() * 4)];
+            things.push({
+                direction: direction as ArrowDirection,
+                state: ArrowState.neutral,
+            });
+        }
+        arrowThings = things;
+        targetIdx = 0;
+        gameState = GameState.ready;
+        canRestart = false;
+        setTimeout(
+            () => {
+                gameState = GameState.inGame;
+                startTime = Date.now();
+            },
+            Math.floor(Math.random() * 4000) + 2000,
+        );
+    }
+
+    function pressed(direction: ArrowDirection) {
+        let directionStr: "left" | "right" | "up" | "down" = "up";
+        switch (direction) {
+            case ArrowDirection.left:
+                directionStr = "left";
+                break;
+            case ArrowDirection.right:
+                directionStr = "right";
+                break;
+            case ArrowDirection.up:
+                directionStr = "up";
+                break;
+            case ArrowDirection.down:
+                directionStr = "down";
+                break;
+        }
+        testerIndicators[directionStr] = true;
         setTimeout(() => {
-            testerIndicators[direction] = false;
+            testerIndicators[directionStr] = false;
         }, 150);
+
+        if (gameState === GameState.inGame) {
+            if (arrowThings[targetIdx].direction === direction) {
+                arrowThings[targetIdx].state = ArrowState.correct;
+                if (targetIdx === arrowThings.length - 1) {
+                    gameState = GameState.won;
+                    endTime = Date.now() - startTime;
+                    setTimeout(() => {
+                        canRestart = true;
+                    }, 1000);
+                }
+            } else {
+                arrowThings[targetIdx].state = ArrowState.wrong;
+                gameState = GameState.lost;
+                setTimeout(() => {
+                    canRestart = true;
+                }, 1500);
+            }
+            targetIdx++;
+            arrowThings = arrowThings;
+        }
     }
 
     function keyboardHandler(e: KeyboardEvent) {
         if (e.code === "ArrowLeft") {
             e.preventDefault();
-            pressed("left");
+            pressed(ArrowDirection.left);
         }
         if (e.code === "ArrowRight") {
             e.preventDefault();
-            pressed("right");
+            pressed(ArrowDirection.right);
         }
         if (e.code === "ArrowUp") {
             e.preventDefault();
-            pressed("up");
+            pressed(ArrowDirection.up);
         }
         if (e.code === "ArrowDown") {
             e.preventDefault();
-            pressed("down");
+            pressed(ArrowDirection.down);
         }
 
         if (e.code === "Space") {
             e.preventDefault();
+            startGame();
         }
     }
 
@@ -62,16 +146,19 @@
         let downPressed = gp.buttons[0].pressed || gp.buttons[13].pressed;
 
         if (!buttonsBuffer.left && leftPressed) {
-            pressed("left");
+            pressed(ArrowDirection.left);
         }
         if (!buttonsBuffer.right && rightPressed) {
-            pressed("right");
+            pressed(ArrowDirection.right);
         }
         if (!buttonsBuffer.up && upPressed) {
-            pressed("up");
+            pressed(ArrowDirection.up);
         }
         if (!buttonsBuffer.down && downPressed) {
-            pressed("down");
+            pressed(ArrowDirection.down);
+            if (canRestart) {
+                startGame();
+            }
         }
 
         buttonsBuffer.left = leftPressed;
@@ -114,6 +201,40 @@
                 >
             </div>
         </section>
+        <hr />
+        <section class="game">
+            {#if gameState === GameState.preGame}
+                <span class="pregame_msg"
+                    >Press space or the down controller button to start</span
+                >
+            {/if}
+
+            {#if gameState === GameState.ready}
+                <span class="ready_msg">Ready!</span>
+            {/if}
+
+            {#if gameState === GameState.inGame || gameState === GameState.lost || gameState === GameState.won}
+                <div class="arrows_wrapper">
+                    {#each arrowThings as thingy}
+                        <Arrow info={thingy} />
+                    {/each}
+                </div>
+            {/if}
+
+            {#if gameState === GameState.won}
+                <span class="time_msg">Your time: {endTime} ms</span>
+            {/if}
+
+            {#if gameState === GameState.lost}
+                <span class="lost_msg">You lost 🥺</span>
+            {/if}
+
+            {#if (gameState === GameState.lost || gameState === GameState.won) && canRestart}
+                <span transition:fade class="restart_msg"
+                    >Press space or down on the controller to restart</span
+                >
+            {/if}
+        </section>
     </CoolBox>
 </main>
 
@@ -127,7 +248,8 @@
         margin-bottom: 5px;
     }
 
-    .tester_wrapper {
+    .tester_wrapper,
+    .arrows_wrapper {
         display: flex;
         justify-content: center;
         column-gap: 4px;
@@ -154,5 +276,35 @@
         border-color: white;
         background-color: black;
         transition: all 50ms;
+    }
+
+    .game {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 60vh;
+        row-gap: 30px;
+    }
+
+    .pregame_msg,
+    .restart_msg {
+        font-size: large;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .ready_msg {
+        font-size: 5rem;
+        color: white;
+        background-color: rgb(227, 0, 0);
+        padding: 2rem;
+        border-radius: 20px;
+    }
+
+    .time_msg,
+    .lost_msg {
+        font-size: large;
+        font-weight: bolder;
     }
 </style>

@@ -1,16 +1,28 @@
 <script lang="ts">
-    export let letter: string;
-    export let prob: number;
-    export let removeActive: boolean;
-    export let isGraveyard = false;
-    export let onLower: () => void;
-    export let onRaise: () => void;
-    export let onRemove: () => void;
+    interface Props {
+        letter: string;
+        prob: number;
+        removeActive: boolean;
+        isGraveyard?: boolean;
+        onLower: () => void;
+        onRaise: () => void;
+        onRemove: () => void;
+    }
+
+    let {
+        letter,
+        prob,
+        removeActive,
+        isGraveyard = false,
+        onLower,
+        onRaise,
+        onRemove
+    }: Props = $props();
 </script>
 
 <div class="main_wrapper">
     <div class={`upper_wrapper ${isGraveyard ? "graveyard" : ""}`}>
-        <div />
+        <div></div>
         <span id="letter">
             {letter}
         </span>
@@ -23,13 +35,13 @@
     <div class="bottom_wrapper">
         {#if removeActive || isGraveyard}
             <button
-                on:click={onRemove}
+                onclick={onRemove}
                 id={isGraveyard ? "restore_button" : "remove_button"}
                 >{isGraveyard ? "Restaurar Letra" : "Remover Letra"}</button
             >
         {:else}
-            <button on:click={onRaise}>+</button>
-            <button on:click={onLower}>-</button>
+            <button onclick={onRaise}>+</button>
+            <button onclick={onLower}>-</button>
         {/if}
     </div>
 </div>

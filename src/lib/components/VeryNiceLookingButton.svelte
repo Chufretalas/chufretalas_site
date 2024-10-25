@@ -1,11 +1,16 @@
 <script lang="ts">
-    export let url: string
-    export let accentColor = "black";
+    interface Props {
+        url: string;
+        accentColor?: string;
+        children?: import('svelte').Snippet;
+    }
+
+    let { url, accentColor = "black", children }: Props = $props();
 </script>
 
 <a href={url} target="_blank" class="wrapper">
     <div class="content" style:box-shadow={`7px 7px ${accentColor}`}>
-        <slot />
+        {@render children?.()}
     </div>
 </a>
 

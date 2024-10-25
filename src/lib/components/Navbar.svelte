@@ -3,7 +3,7 @@
     import NavbarLinks from "./NavbarLinks.svelte";
     import { t, locale, locales } from "$langs/stores";
 
-    let menuExpanded = false;
+    let menuExpanded = $state(false);
 </script>
 
 <nav>
@@ -24,7 +24,7 @@
     <button
         class="expand_button only_on_mobile"
         class:reverse_column={menuExpanded}
-        on:click={() => (menuExpanded = !menuExpanded)}
+        onclick={() => (menuExpanded = !menuExpanded)}
     >
         <span>Menu</span>
         <span>{menuExpanded ? "︿" : "﹀"}</span>

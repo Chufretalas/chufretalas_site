@@ -1,5 +1,6 @@
 <script lang="ts">
     import CoolBox from "$lib/components/CoolBox.svelte";
+    let loaded = $state(false)
 </script>
 
 <main>
@@ -9,12 +10,15 @@
                 >WASD: mover | ← →: mirar | espaço: aceitar | P: debug | F: tela
                 cheia</span
             >
+            <span class:hidden={loaded}>Carregando...</span>
             <iframe
                 src="/scramble_ghosts.html"
                 frameborder={0}
                 title="scramble_ghosts"
                 id="game"
                 scrolling="no"
+                onload={() => loaded = true}
+                class:hidden={!loaded}
             ></iframe>
             <span id="phone_warning">Isso só funciona em um computador ☹️</span>
         </div>
@@ -22,6 +26,11 @@
 </main>
 
 <style>
+
+    .hidden {
+        display: none;
+    }
+
     main {
         width: 90%;
         margin: 0 auto;

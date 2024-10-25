@@ -1,14 +1,24 @@
 <script lang="ts">
-    export let title = "";
-    export let accentColor = "black";
-    export let width = ""
+    interface Props {
+        title?: string;
+        accentColor?: string;
+        width?: string;
+        children?: import('svelte').Snippet;
+    }
+
+    let {
+        title = "",
+        accentColor = "black",
+        width = "",
+        children
+    }: Props = $props();
 </script>
 
 <div class="main_sect" style:box-shadow={`7px 7px ${accentColor}`} style:width={width}>
     {#if title}
         <h2 class="title">{title}</h2>
     {/if}
-    <slot />
+    {@render children?.()}
 </div>
 
 <style>

@@ -2,7 +2,8 @@
     import { t, locale } from "$langs/stores";
     import type { ICoisa } from "$lib/data/coisas";
     import CoolBox from "./CoolBox.svelte";
-    export let coisa: ICoisa
+
+    let { coisa }: { coisa: ICoisa } = $props();
 </script>
 
 <div class="coisa_card">
@@ -12,7 +13,8 @@
             <p>
                 {coisa.description[$locale]}
             </p>
-            <a class="coisa_link" href={coisa.link}>{$t("coisa_card.button")}</a>
+            <a class="coisa_link" href={coisa.link}>{$t("coisa_card.button")}</a
+            >
         </div>
     </CoolBox>
 </div>

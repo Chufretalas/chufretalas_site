@@ -1,45 +1,48 @@
 <script lang="ts">
+    import { SvelteMap } from "svelte/reactivity";
     import LetterCard from "$lib/components/letter_coisa/LetterCard.svelte";
 
-    let pickedLetter = "";
+    let pickedLetter = $state("");
 
-    let autoRemove = false;
+    let autoRemove = $state(false);
 
-    let removeActive = false;
+    let removeActive = $state(false);
 
-    let available = new Map([
-        ["A", 2],
-        ["B", 2],
-        ["C", 2],
-        ["D", 2],
-        ["E", 2],
-        ["F", 2],
-        ["G", 2],
-        ["H", 2],
-        ["I", 2],
-        ["J", 2],
-        ["K", 2],
-        ["L", 2],
-        ["M", 2],
-        ["N", 2],
-        ["O", 2],
-        ["P", 2],
-        ["Q", 2],
-        ["R", 2],
-        ["S", 2],
-        ["T", 2],
-        ["U", 2],
-        ["V", 2],
-        ["W", 2],
-        ["X", 2],
-        ["Y", 2],
-        ["Z", 2],
-    ]);
+    let available = $state(
+        new SvelteMap([
+            ["A", 2],
+            ["B", 2],
+            ["C", 2],
+            ["D", 2],
+            ["E", 2],
+            ["F", 2],
+            ["G", 2],
+            ["H", 2],
+            ["I", 2],
+            ["J", 2],
+            ["K", 2],
+            ["L", 2],
+            ["M", 2],
+            ["N", 2],
+            ["O", 2],
+            ["P", 2],
+            ["Q", 2],
+            ["R", 2],
+            ["S", 2],
+            ["T", 2],
+            ["U", 2],
+            ["V", 2],
+            ["W", 2],
+            ["X", 2],
+            ["Y", 2],
+            ["Z", 2],
+        ]),
+    );
 
-    let graveyard: Map<string, number> = new Map();
+    let graveyard = $state<SvelteMap<string, number>>(new SvelteMap());
 
     function getSortedLetterArray(
-        letterMap: Map<string, number>,
+        letterMap: SvelteMap<string, number>,
     ): [string, number][] {
         return Array.from(letterMap.entries()).sort(
             ([letterA, probA], [letterB, probB]) =>
@@ -63,10 +66,15 @@
             const prob = available.get(pickedLetter) ?? 2;
             graveyard.set(pickedLetter, prob);
             graveyard = graveyard;
+            console.log(graveyard);
             available.delete(pickedLetter);
             available = available;
         }
     }
+
+    $effect(() => {
+        console.log(graveyard);
+    });
 </script>
 
 <svelte:head>
@@ -94,9 +102,9 @@
             />
         </fieldset>
         <div id="picked_letter">
-            {pickedLetter === "" ? "?" : pickedLetter ?? "?"}
+            {pickedLetter === "" ? "?" : (pickedLetter ?? "?")}
         </div>
-        <button on:click={pickLetter} id="picker_button">Sortear!</button>
+        <button onclick={pickLetter} id="picker_button">Sortear!</button>
     </section>
     <hr />
     <section class="available_section">

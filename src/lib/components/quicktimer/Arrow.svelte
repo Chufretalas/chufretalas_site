@@ -5,18 +5,22 @@
         type IArrowThingy,
     } from "$lib/types/quicktimer";
 
-    export let info: IArrowThingy;
+    interface Props {
+        info: IArrowThingy;
+    }
+
+    let { info }: Props = $props();
 
     function getArrow(direction: ArrowDirection) {
         switch (direction) {
             case ArrowDirection.left:
-                return "🡐";
+                return "🡸";
             case ArrowDirection.right:
-                return "🡒";
+                return "🡺";
             case ArrowDirection.up:
-                return "🡑";
+                return "🡹";
             case ArrowDirection.down:
-                return "🡓";
+                return "🡻";
         }
     }
 
@@ -42,10 +46,10 @@
         align-items: center;
         justify-content: center;
         border: 3px solid black;
-        font-size: 2.8rem;
+        font-size: 2.3rem;
         width: 2.8rem;
         height: 2.8rem;
-        font-weight: bolder;
+        font-weight: bold;
         padding: 5px;
         border-radius: 9999999px;
     }

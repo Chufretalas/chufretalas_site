@@ -9,19 +9,19 @@
     } from "$lib/types/quicktimer";
     import { fade } from "svelte/transition";
 
-    let animation: number;
+    let animation = $state<number>(0);
 
     let targetIdx = 0;
 
     let startTime = 0;
 
-    let endTime = 0;
+    let endTime = $state(0);
 
-    let canRestart = true;
+    let canRestart = $state(true);
 
-    let gameState: GameState = GameState.preGame;
+    let gameState: GameState = $state(GameState.preGame);
 
-    let arrowThings: IArrowThingy[] = [];
+    let arrowThings: IArrowThingy[] = $state([]);
 
     let buttonsBuffer = {
         // here I am going to consider the arrows and the buttons as the same thing
@@ -31,12 +31,12 @@
         down: false,
     };
 
-    let testerIndicators = {
+    let testerIndicators = $state({
         left: false,
         right: false,
         up: false,
         down: false,
-    };
+    });
 
     function startGame() {
         const things: IArrowThingy[] = [];
@@ -171,9 +171,9 @@
 </script>
 
 <svelte:window
-    on:gamepadconnected={loop}
-    on:gamepaddisconnected={() => cancelAnimationFrame(animation)}
-    on:keydown={keyboardHandler}
+    ongamepadconnected={loop}
+    ongamepaddisconnected={() => cancelAnimationFrame(animation)}
+    onkeydown={keyboardHandler}
 />
 
 <main>
@@ -189,15 +189,15 @@
             </p>
             <div class="tester_wrapper">
                 <span class:pressed={testerIndicators.left} class="tester"
-                    >🡐</span
+                    >🡸</span
                 >
                 <span class:pressed={testerIndicators.right} class="tester"
-                    >🡒</span
+                    >🡺</span
                 >
-                <span class:pressed={testerIndicators.up} class="tester">🡑</span
+                <span class:pressed={testerIndicators.up} class="tester">🡹</span
                 >
                 <span class:pressed={testerIndicators.down} class="tester"
-                    >🡓</span
+                    >🡻</span
                 >
             </div>
         </section>
@@ -252,7 +252,7 @@
     .arrows_wrapper {
         display: flex;
         justify-content: center;
-        column-gap: 4px;
+        column-gap: 10px;
         margin-top: 5px;
         margin-bottom: 10px;
     }
@@ -262,10 +262,10 @@
         align-items: center;
         justify-content: center;
         border: 3px solid black;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         width: 1.7rem;
         height: 1.7rem;
-        font-weight: 900;
+        font-weight: 600;
         padding: 5px;
         border-radius: 9999999px;
         background-color: white;

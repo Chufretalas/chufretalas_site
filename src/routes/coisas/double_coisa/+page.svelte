@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { run } from "svelte/legacy";
+
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
     import matrix2DToString from "$lib/utils/matrix2DToString";
@@ -7,37 +9,24 @@
 
     const searchParams = new URLSearchParams($page.url.searchParams);
 
+    const DEFAULT_ROUNDS = 10;
+    const DEFAULT_NPLAYERS = 6;
+
     let isMounted = false;
 
-    let formRounds: number;
-    let formNPlayers: number;
+    let formRounds = $state<number | undefined>();
+    let formNPlayers = $state<number | undefined>();
 
-    let rounds: number = 10;
-    let nPlayers: number = 6;
+    let rounds: number = $state(DEFAULT_ROUNDS);
+    let nPlayers: number = $state(DEFAULT_NPLAYERS);
 
-    let players = new Array<string>(nPlayers).fill("");
+    let players = $state(new Array<string>(DEFAULT_NPLAYERS).fill(""));
 
-    let scores = new Array(nPlayers)
-        .fill(undefined)
-        .map(() => new Array(rounds));
-
-    $: totals = scores
-        .map((row, idx) => [
-            idx,
-            row.reduce((acc, crr) => {
-                crr = isNaN(crr) ? 0 : +crr;
-                return acc + crr;
-            }, 0),
-        ])
-        .sort((a, b) => a[1] - b[1]);
-
-    $: {
-        rounds;
-        nPlayers;
-        players;
-        scores;
-        saveToURL();
-    }
+    let scores = $state(
+        new Array(DEFAULT_NPLAYERS)
+            .fill(undefined)
+            .map(() => new Array(rounds)),
+    );
 
     function saveToURL() {
         if (isMounted) {
@@ -93,6 +82,25 @@
 
         isMounted = true;
     });
+    let totals = $derived(
+        scores
+            .map((row, idx) => [
+                idx,
+                row.reduce((acc, crr) => {
+                    crr = isNaN(crr) ? 0 : +crr;
+                    return acc + crr;
+                }, 0),
+            ])
+            .sort((a, b) => a[1] - b[1]),
+    );
+
+    $effect(() => {
+        rounds;
+        nPlayers;
+        players;
+        scores;
+        saveToURL();
+    });
 </script>
 
 <svelte:head>
@@ -108,13 +116,17 @@
     </div>
     <form
         id="config_form"
-        on:submit={(e) => {
+        onsubmit={(e) => {
             if (
                 confirm(
                     "Isso deletará todos os dados atuais na tabela.\nVocê tem certeza que quer continuar?",
                 )
             ) {
-                if (formNPlayers !== nPlayers || formRounds !== rounds) {
+                if (
+                    (formNPlayers !== nPlayers || formRounds !== rounds) &&
+                    formNPlayers !== undefined &&
+                    formRounds !== undefined
+                ) {
                     nPlayers = formNPlayers;
                     rounds = formRounds;
                     players = new Array(formNPlayers).fill("");
@@ -225,7 +237,7 @@
 
     <button
         id="clear_all_button"
-        on:click={() => {
+        onclick={() => {
             if (confirm("Deseja mesmo limpar todos os dados?")) {
                 players = new Array(nPlayers).fill("");
                 scores = new Array(nPlayers)

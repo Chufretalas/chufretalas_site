@@ -2,8 +2,12 @@
     import type { IProject } from "$lib/data/projects";
     import CoolBox from "./CoolBox.svelte";
     import { t, locale } from "$langs/stores";
-    export let project: IProject;
-    export let accentColor = "black";
+    interface Props {
+        project: IProject;
+        accentColor?: string;
+    }
+
+    let { project, accentColor = "black" }: Props = $props();
 </script>
 
 <div class="wrapper">

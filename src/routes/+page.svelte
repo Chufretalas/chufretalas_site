@@ -10,7 +10,7 @@
 
     const sampleProjects = toShuffled(PROJECTS);
 
-    let aboutReadMore = false;
+    let aboutReadMore = $state(false);
     //TODO: avoid loading game assets when not on a computer
     //TODO: add a <meta> tag to every page to make the SEO really powerful adn stuff https://developer.chrome.com/docs/lighthouse/seo/meta-description?utm_source=lighthouse&utm_medium=devtools&hl=pt-br
 </script>
@@ -54,7 +54,7 @@
                     <span>{$t("home.about_me.image_description")}</span>
                 </div>
                 <button
-                    on:click={() => (aboutReadMore = !aboutReadMore)}
+                    onclick={() => (aboutReadMore = !aboutReadMore)}
                     id="about_show_more_button"
                     >{aboutReadMore
                         ? $t("home.about_me.show_less")

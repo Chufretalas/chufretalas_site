@@ -25,7 +25,7 @@ export const PROJECTS: IProject[] = [
     {
         title: "Scramble Ghosts",
         repoURL: "https://github.com/Chufretalas/scramble_ghosts",
-        deployURL: "/jogos/scramble_ghosts",
+        deployURL: "/games/scramble_ghosts",
         tags: [TAGS.go, TAGS.wasm],
         img: "/project_thumbnails/thumbnail_scramble_ghosts.webp",
         description: {
@@ -36,7 +36,7 @@ export const PROJECTS: IProject[] = [
     {
         title: "Falling Sand",
         repoURL: "https://github.com/Chufretalas/falling_sand",
-        deployURL: "/jogos/falling_sand",
+        deployURL: "/games/falling_sand",
         tags: [TAGS.go, TAGS.wasm],
         img: "/project_thumbnails/thumbnail_falling_sand.webp",
         description: {

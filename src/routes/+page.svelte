@@ -12,7 +12,7 @@
 
     let aboutReadMore = $state(false);
     //TODO: avoid loading game assets when not on a computer
-    //TODO: add a <meta> tag to every page to make the SEO really powerful adn stuff https://developer.chrome.com/docs/lighthouse/seo/meta-description?utm_source=lighthouse&utm_medium=devtools&hl=pt-br
+    //TODO: add a <meta> tag to every page to make the SEO really powerful and stuff https://developer.chrome.com/docs/lighthouse/seo/meta-description?utm_source=lighthouse&utm_medium=devtools&hl=pt-br
 </script>
 
 <main>
@@ -73,7 +73,7 @@
         </CoolBox>
         <CoolBox title="{$t('home.other_pages.title')} 👍" accentColor="red">
             <div class="other_pages_inner_wrapper">
-                <a href="/jogos" class="bw_button"
+                <a href="/games" class="bw_button"
                     >🎮 {$t("home.other_pages.games_button")} 📺</a
                 >
                 <a href="/coisas" class="bw_button"

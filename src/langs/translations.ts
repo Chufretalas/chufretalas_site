@@ -47,7 +47,6 @@ interface ILangDict {
         sub_description: string
     }
 }
-//TODO: change the routes to match the english ones and redirect the old ones
 
 const translations: { en: ILangDict, "pt-BR": ILangDict } = {
     en: {

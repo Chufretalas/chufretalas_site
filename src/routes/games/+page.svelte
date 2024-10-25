@@ -7,7 +7,7 @@
     const QUICKTIMER = {
         title: "Quicktimer",
         repoURL: "",
-        deployURL: "/jogos/quicktimer",
+        deployURL: "/games/quicktimer",
         tags: [],
         img: "/project_thumbnails/thumbnail_quicktimer.webp",
         description: {

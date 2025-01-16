@@ -109,23 +109,13 @@ export const PROJECTS: IProject[] = [
         },
     },
     {
-        title: "AoC 23",
-        repoURL: "https://github.com/Chufretalas/aoc_23",
-        tags: [TAGS.go],
-        img: "/project_thumbnails/thumbnail_aoc_23.webp",
-        description: {
-            en: "My solutions to Advent of Code 2023.",
-            "pt-BR": "Minhas soluções do Advent of Code 2023."
-        },
-    },
-    {
-        title: "AoC 22",
-        repoURL: "https://github.com/Chufretalas/aoc_22",
+        title: "AoC",
+        repoURL: "https://github.com/Chufretalas/aoc",
         tags: [TAGS.go, TAGS.python, TAGS.javascript],
-        img: "/project_thumbnails/thumbnail_aoc_22.webp",
+        img: "/project_thumbnails/thumbnail_aoc.webp",
         description: {
-            en: "My solutions to Advent of Code 2022.",
-            "pt-BR": "Minhas soluções do Advent of Code 2022."
+            en: "My solutions to Advent of Code.",
+            "pt-BR": "Minhas soluções do Advent of Code."
         },
     },
     {
@@ -156,6 +146,26 @@ export const PROJECTS: IProject[] = [
         description: {
             en: "A guessing game that uses voice as the input.",
             "pt-BR": "Jogo de adivinhação que usa voz como entrada."
+        },
+    },
+    {
+        title: "Micropython Video Transcoder",
+        repoURL: "https://github.com/Chufretalas/micropython_video_transcoder",
+        tags: [TAGS.python, TAGS.micropython, TAGS.python, TAGS.microcontroller, TAGS.hardware],
+        img: "/project_thumbnails/thumbnail_micropython_video_transcoder.webp",
+        description: {
+            en: "A video transcoder to run videos on micropython compatible microcontrolers.",
+            "pt-BR": "Um transcoder de vídeos para exibir vídeos em microcontroladores compatíveis com micropython."
+        },
+    },
+    {
+        title: "N Size ALU",
+        repoURL: "https://github.com/Chufretalas/N_size_ALU",
+        tags: [TAGS.FPGA, TAGS.VHDL, TAGS.hardware],
+        img: "/project_thumbnails/thumbnail_n_size_alu.webp",
+        description: {
+            en: "Variable size Arithmetic Logic Unit made in VHDL.",
+            "pt-BR": "Unidade Lógica Artimética de tamanho variável feita em VHDL."
         },
     },
 ]

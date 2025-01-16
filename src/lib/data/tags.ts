@@ -18,6 +18,11 @@ export const TAGS = {
     "tailwind": { name: "tailwind", bgColor: "#38bdf8", color: "black" },
     "cypress": { name: "cypress", bgColor: "#58d09e", color: "white" },
     "wasm": { name: "wasm", bgColor: "#624de8", color: "white" },
+    "micropython": { name: "micropython", bgColor: "#2b2728", color: "white" },
+    "microcontroller": { name: "microcontroller", bgColor: "#00979d", color: "white" },
+    "hardware": { name: "hardware", bgColor: "#114c1d", color: "white" },
+    "FPGA": { name: "FPGA", bgColor: "#fec223", color: "black" },
+    "VHDL": { name: "VHDL", bgColor: "#551c40", color: "white" },
 }
 
 export interface Tag {

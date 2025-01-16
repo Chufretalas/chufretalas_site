@@ -11,7 +11,7 @@
 </script>
 
 <div class="wrapper">
-    <CoolBox accentColor={accentColor}>
+    <CoolBox {accentColor}>
         <div class="inner_wrapper">
             <span class="title">{project.title}</span>
             <div class="tags_and_img">
@@ -27,13 +27,15 @@
                 </ul>
                 <img
                     class="preview_img"
-                    src={project.img}
+                    src={project.img ?? ""}
                     alt={`${project.title}'s preview image`}
                 />
             </div>
             <div class="external_buttons">
                 {#if project.repoURL}
-                    <a href={project.repoURL} target="_blank">{$t("project_card.repo_button")}</a>
+                    <a href={project.repoURL} target="_blank"
+                        >{$t("project_card.repo_button")}</a
+                    >
                 {/if}
                 {#if project.deployURL}
                     <a href={project.deployURL} target="_blank">Deployment</a>
@@ -128,7 +130,6 @@
         font-size: small;
     }
 
-    
     @media only screen and (max-width: 768px) {
         .wrapper {
             width: 100%;

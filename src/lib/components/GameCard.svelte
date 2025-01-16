@@ -16,7 +16,7 @@
             <span class="title">{project.title}</span>
             <img
                 class="preview_img"
-                src={project.img}
+                src={project.img ?? ""}
                 alt={`${project.title}'s preview image`}
             />
             <a href={project.deployURL}>{$t("game_card.button")}</a>

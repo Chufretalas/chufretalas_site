@@ -1,4 +1,6 @@
+import { readable } from "svelte/store"
 import { TAGS, type Tag } from "./tags"
+import toShuffled from "$lib/utils/shuffle"
 
 
 export interface IProject {
@@ -56,6 +58,46 @@ export const PROJECTS: IProject[] = [
         },
     },
     {
+        title: "Pantsbase",
+        repoURL: "https://github.com/Chufretalas/pantsbase",
+        tags: [TAGS.go, TAGS.sqlite, TAGS.javascript, TAGS.HTML, TAGS.CSS],
+        img: "/project_thumbnails/thumbnail_pantsbase.webp",
+        description: {
+            en: "A pocketbase clone made from scratch and with as little dependencies as possible.",
+            "pt-BR": "Um clone do pocketbase feita completamente do zero e com o mínimo de dependências possível."
+        },
+    },
+    {
+        title: "N Size ALU",
+        repoURL: "https://github.com/Chufretalas/N_size_ALU",
+        tags: [TAGS.FPGA, TAGS.VHDL, TAGS.hardware],
+        img: "/project_thumbnails/thumbnail_n_size_alu.webp",
+        description: {
+            en: "Variable size Arithmetic Logic Unit made in VHDL.",
+            "pt-BR": "Unidade Lógica Artimética de tamanho variável feita em VHDL."
+        },
+    },
+    {
+        title: "Micropython Video Transcoder",
+        repoURL: "https://github.com/Chufretalas/micropython_video_transcoder",
+        tags: [TAGS.python, TAGS.micropython, TAGS.microcontroller, TAGS.hardware],
+        img: "/project_thumbnails/thumbnail_micropython_video_transcoder.webp",
+        description: {
+            en: "A video transcoder to run videos on micropython compatible microcontrolers.",
+            "pt-BR": "Um transcoder de vídeos para exibir vídeos em microcontroladores compatíveis com micropython."
+        },
+    },
+    {
+        title: "AoC",
+        repoURL: "https://github.com/Chufretalas/aoc",
+        tags: [TAGS.go, TAGS.python, TAGS.javascript],
+        img: "/project_thumbnails/thumbnail_aoc.webp",
+        description: {
+            en: "My solutions to Advent of Code.",
+            "pt-BR": "Minhas soluções do Advent of Code."
+        },
+    },
+    {
         title: "BCT-CALC",
         repoURL: "https://github.com/Chufretalas/BCT-CALC",
         deployURL: "https://bct-calc.vercel.app/",
@@ -99,26 +141,6 @@ export const PROJECTS: IProject[] = [
         },
     },
     {
-        title: "Pantsbase",
-        repoURL: "https://github.com/Chufretalas/pantsbase",
-        tags: [TAGS.go, TAGS.sqlite, TAGS.javascript, TAGS.HTML, TAGS.CSS],
-        img: "/project_thumbnails/thumbnail_pantsbase.webp",
-        description: {
-            en: "A pocketbase clone made from scratch and with as little dependencies as possible.",
-            "pt-BR": "Um clone do pocketbase feita completamente do zero e com o mínimo de dependências possível."
-        },
-    },
-    {
-        title: "AoC",
-        repoURL: "https://github.com/Chufretalas/aoc",
-        tags: [TAGS.go, TAGS.python, TAGS.javascript],
-        img: "/project_thumbnails/thumbnail_aoc.webp",
-        description: {
-            en: "My solutions to Advent of Code.",
-            "pt-BR": "Minhas soluções do Advent of Code."
-        },
-    },
-    {
         title: "Sadpad",
         repoURL: "https://github.com/Chufretalas/sadpad",
         tags: [TAGS.sveltekit, TAGS.typescript, TAGS.rust, TAGS.tauri, TAGS.HTML, TAGS.CSS],
@@ -146,26 +168,6 @@ export const PROJECTS: IProject[] = [
         description: {
             en: "A guessing game that uses voice as the input.",
             "pt-BR": "Jogo de adivinhação que usa voz como entrada."
-        },
-    },
-    {
-        title: "Micropython Video Transcoder",
-        repoURL: "https://github.com/Chufretalas/micropython_video_transcoder",
-        tags: [TAGS.python, TAGS.micropython, TAGS.python, TAGS.microcontroller, TAGS.hardware],
-        img: "/project_thumbnails/thumbnail_micropython_video_transcoder.webp",
-        description: {
-            en: "A video transcoder to run videos on micropython compatible microcontrolers.",
-            "pt-BR": "Um transcoder de vídeos para exibir vídeos em microcontroladores compatíveis com micropython."
-        },
-    },
-    {
-        title: "N Size ALU",
-        repoURL: "https://github.com/Chufretalas/N_size_ALU",
-        tags: [TAGS.FPGA, TAGS.VHDL, TAGS.hardware],
-        img: "/project_thumbnails/thumbnail_n_size_alu.webp",
-        description: {
-            en: "Variable size Arithmetic Logic Unit made in VHDL.",
-            "pt-BR": "Unidade Lógica Artimética de tamanho variável feita em VHDL."
         },
     },
 ]

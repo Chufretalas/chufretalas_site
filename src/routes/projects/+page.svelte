@@ -3,7 +3,6 @@
 
     import ProjectCard from "$lib/components/ProjectCard.svelte";
     import { PROJECTS } from "$lib/data/projects";
-    import toShuffled from "$lib/utils/shuffle";
     import { t } from "$langs/stores";
 </script>
 
@@ -11,7 +10,7 @@
     <CoolBox title={$t("projects.title")}>
         <ul>
             <div class="projects_wrapper">
-                {#each toShuffled(PROJECTS) as project}
+                {#each PROJECTS as project}
                     <ProjectCard {project} />
                 {/each}
             </div>

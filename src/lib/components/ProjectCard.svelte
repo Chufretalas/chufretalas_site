@@ -25,7 +25,6 @@
                         </li>
                     {/each}
                 </ul>
-                {project.img?.replace("/project_thumbnails/", "")}
                 <img
                     class="preview_img"
                     src={project.img}

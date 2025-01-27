@@ -98,6 +98,16 @@ export const PROJECTS: IProject[] = [
         },
     },
     {
+        title: "Calculator Buddy",
+        repoURL: "https://github.com/Chufretalas/calculator_buddy",
+        tags: [TAGS.python, TAGS.machine_vision],
+        img: "/project_thumbnails/calculator_buddy.webp",
+        description: {
+            en: "A python app that uses the default windows calculator app for you.",
+            "pt-BR": "Um aplicativo de python que usa a calculadora padrão do windows por você."
+        },
+    },
+    {
         title: "BCT-CALC",
         repoURL: "https://github.com/Chufretalas/BCT-CALC",
         deployURL: "https://bct-calc.vercel.app/",

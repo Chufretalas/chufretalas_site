@@ -23,6 +23,7 @@ export const TAGS = {
     "hardware": { name: "hardware", bgColor: "#114c1d", color: "white" },
     "FPGA": { name: "FPGA", bgColor: "#fec223", color: "black" },
     "VHDL": { name: "VHDL", bgColor: "#551c40", color: "white" },
+    "machine_vision": { name: "machine vision", bgColor: "#6eff63", color: "black" },
 }
 
 export interface Tag {

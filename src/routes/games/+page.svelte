@@ -17,6 +17,11 @@
     }
 </script>
 
+
+<svelte:head>
+    <title>{$t("games.page_title")}</title>
+</svelte:head>
+
 <main>
     <CoolBox title="🎮 {$t('games.title')} 📺">
         <span>{$t("games.description")}</span>

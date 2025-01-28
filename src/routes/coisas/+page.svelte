@@ -5,6 +5,10 @@
     import COISAS from "$lib/data/coisas";
 </script>
 
+<svelte:head>
+    <title>{$t("coisas.page_title")}</title>
+</svelte:head>
+
 <main>
     <CoolBox title="🚀 {$t('coisas.title')} 🪑">
         <span>{$t("coisas.description")}</span>

@@ -1,5 +1,6 @@
 interface ILangDict {
     home: {
+        page_title: string,
         about_me: {
             title: string,
             p1: string,
@@ -35,13 +36,16 @@ interface ILangDict {
         button: string
     },
     projects: {
+        page_title: string,
         title: string
     },
     games: {
+        page_title: string,
         title: string,
-        description: string
+        description: string,
     },
     coisas: {
+        page_title: string,
         title: string,
         description: string,
         sub_description: string
@@ -51,6 +55,7 @@ interface ILangDict {
 const translations: { en: ILangDict, "pt-BR": ILangDict } = {
     en: {
         home: {
+            page_title: "Home",
             about_me: {
                 title: "About me",
                 p1: `My name is Marco Antonio Benevenuto de Oliveira. I'm a brazilian software developer who loves new challenges and problem solving, from fixing some broken CSS to learning RISC-V assembly from an aliexpress board with very little documentation.`,
@@ -86,13 +91,16 @@ const translations: { en: ILangDict, "pt-BR": ILangDict } = {
             button: "Visit Coisa"
         },
         projects: {
+            page_title: "Projects",
             title: "(Almost) all my projects"
         },
         games: {
+            page_title: "Games",
             title: "Games",
             description: "For you that don't the trouble of downloading the desktop versions, here are the web versions of some games/simulators I have made"
         },
         coisas: {
+            page_title: "Coisas",
             title: "Coisas (from the portuguese for \"things\")",
             description: "Things that needed a place to live, but weren't worth their own separate projects",
             sub_description: "(Don't expect these coisas to match the rest of the site)"
@@ -101,6 +109,7 @@ const translations: { en: ILangDict, "pt-BR": ILangDict } = {
     },
     "pt-BR": {
         home: {
+            page_title: "Home",
             about_me: {
                 title: "Sobre mim",
                 p1: `Meu nome é Marco Antonio Benevenuto de Oliveira. Sou um programador brasileiro que ama se desafiar e resolver problemas, desde arrumar algum CSS quebrado no frontend até aprender assembly RISC-V para usar uma plaquinha do aliexpress quase sem documentação.`,
@@ -136,13 +145,16 @@ const translations: { en: ILangDict, "pt-BR": ILangDict } = {
             button: "Visitar Coisa"
         },
         projects: {
+            page_title: "Projetos",
             title: "(Quase) todos os meus projetos"
         },
         games: {
+            page_title: "Jogos",
             title: "Jogos",
             description: "Para você que não quer o trabalho de baixar a versão desktop, seguem versões web de alguns jogos/simuladores que eu fiz"
         },
         coisas: {
+            page_title: "Coisas",
             title: "Coisas",
             description: "Coisas que precisavam de um lugar para morar, mas não mereciam um projeto separado",
             sub_description: "(Não espere consistência estética entre as coisas e o resto do site)"

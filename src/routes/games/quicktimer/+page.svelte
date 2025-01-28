@@ -8,6 +8,7 @@
         type IArrowThingy,
     } from "$lib/types/quicktimer";
     import { fade } from "svelte/transition";
+    import { t } from "$langs/stores";
 
     let animation = $state<number>(0);
 
@@ -169,6 +170,10 @@
         animation = requestAnimationFrame(loop);
     }
 </script>
+
+<svelte:head>
+    <title>{$t("games.page_title")} - Quicktimer</title>
+</svelte:head>
 
 <svelte:window
     ongamepadconnected={loop}

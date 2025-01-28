@@ -6,6 +6,10 @@
     import { t } from "$langs/stores";
 </script>
 
+<svelte:head>
+    <title>{$t("projects.page_title")}</title>
+</svelte:head>
+
 <main>
     <CoolBox title={$t("projects.title")}>
         <ul>

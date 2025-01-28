@@ -11,7 +11,7 @@
 
     let { children }: Props = $props();
 
-    export const snapshot: Snapshot<string> = {
+    export const snapshot: Snapshot<"en" | "pt-BR"> = {
         capture: () => $locale,
         restore: (value) => ($locale = value),
     };

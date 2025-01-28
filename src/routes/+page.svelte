@@ -12,8 +12,13 @@
 
     let aboutReadMore = $state(false);
     //TODO: avoid loading game assets when not on a computer
-    //TODO: add a <meta> tag to every page to make the SEO really powerful and stuff https://developer.chrome.com/docs/lighthouse/seo/meta-description?utm_source=lighthouse&utm_medium=devtools&hl=pt-br
 </script>
+
+<svelte:head>
+    <title>{$t("home.page_title")}</title>
+    <meta name="description" lang="en" content="The personal site from Marco Antonio Benevenuto de Oliveira (Chufretalas).">
+    <meta name="description" lang="pt-BR" content="O site pessoal de Marco Antonio Benevenuto de Oliveira (Chufretalas).">
+</svelte:head>
 
 <main>
     <section class="section_left">

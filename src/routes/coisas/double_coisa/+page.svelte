@@ -1,13 +1,11 @@
 <script lang="ts">
-    import { run } from "svelte/legacy";
-
     import { goto } from "$app/navigation";
-    import { page } from "$app/stores";
+    import { page } from "$app/state";
     import matrix2DToString from "$lib/utils/matrix2DToString";
     import range from "$lib/utils/range";
     import { onMount } from "svelte";
 
-    const searchParams = new URLSearchParams($page.url.searchParams);
+    const searchParams = new URLSearchParams(page.url.searchParams);
 
     const DEFAULT_ROUNDS = 10;
     const DEFAULT_NPLAYERS = 6;
@@ -28,13 +26,15 @@
             .map(() => new Array(rounds)),
     );
 
+    let lastUrl = page.url.toString();
+
     function saveToURL() {
         if (isMounted) {
-            searchParams.set("rounds", rounds.toString());
-            searchParams.set("nPlayers", nPlayers.toString());
+            const newSearchParams = new URLSearchParams();
+            newSearchParams.set("rounds", rounds.toString());
+            newSearchParams.set("nPlayers", nPlayers.toString());
 
             let playersString = "";
-
             for (let i = 0; i < players.length; i++) {
                 if (i === players.length - 1) {
                     playersString += players[i];
@@ -43,11 +43,15 @@
                 playersString += players[i] + ";";
             }
 
-            searchParams.set("players", playersString);
-            searchParams.set("scores", matrix2DToString(scores));
-            goto($page.url.pathname + "?" + searchParams.toString(), {
-                keepFocus: true,
-            });
+            newSearchParams.set("players", playersString);
+            newSearchParams.set("scores", matrix2DToString(scores));
+
+            const newUrl = page.url.pathname + "?" + newSearchParams.toString();
+
+            if (lastUrl !== newUrl) {
+                goto(newUrl, { keepFocus: true });
+                lastUrl = newUrl;
+            }
         }
     }
 
@@ -69,7 +73,6 @@
             for (let i = 0; i < nPlayers; i++) {
                 newScores.push([]);
                 for (let j = 0; j < rounds; j++) {
-                    // console.log(split[idx]);
                     newScores[i].push(
                         split[idx] === "<nil>" ? undefined : +split[idx],
                     );
@@ -82,6 +85,7 @@
 
         isMounted = true;
     });
+
     let totals = $derived(
         scores
             .map((row, idx) => [

@@ -8,7 +8,7 @@
 </svelte:head>
 
 <EbitengineGame
-    title={"Scramble Ghosts v0.4.0 (web)"}
+    title={"Scramble Ghosts v0.4.0"}
     instructions={"WASD: mover | ← →: mirar | espaço: aceitar | P: debug | F: tela cheia"}
     iframeSource={"/scramble_ghosts.html"}
     iframeTitle={"scramble_ghosts"}

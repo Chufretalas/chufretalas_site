@@ -10,7 +10,7 @@
     }
 
     const go = new Go();
-    WebAssembly.instantiateStreaming(fetch("./scramble_ghosts.wasm"), go.importObject).then(result => {
+    WebAssembly.instantiateStreaming(fetch("./scramble_ghosts.wasm.br"), go.importObject).then(result => {
         go.run(result.instance);
     });
 </script>

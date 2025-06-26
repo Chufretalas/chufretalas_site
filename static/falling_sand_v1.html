@@ -10,7 +10,7 @@
     }
 
     const go = new Go();
-    WebAssembly.instantiateStreaming(fetch("./falling_sand_v1.wasm"), go.importObject).then(result => {
+    WebAssembly.instantiateStreaming(fetch("./falling_sand_v1.wasm.br"), go.importObject).then(result => {
         go.run(result.instance);
     });
 </script>

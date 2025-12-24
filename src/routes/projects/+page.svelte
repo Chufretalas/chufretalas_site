@@ -2,8 +2,11 @@
     import CoolBox from "$lib/components/CoolBox.svelte";
 
     import ProjectCard from "$lib/components/ProjectCard.svelte";
-    import { PROJECTS } from "$lib/data/projects";
     import { t } from "$langs/stores";
+
+    let { data } = $props();
+
+    let projects = $derived(data.projects);
 </script>
 
 <svelte:head>
@@ -14,7 +17,7 @@
     <CoolBox title={$t("projects.title")}>
         <ul>
             <div class="projects_wrapper">
-                {#each PROJECTS as project}
+                {#each projects as project}
                     <ProjectCard {project} />
                 {/each}
             </div>

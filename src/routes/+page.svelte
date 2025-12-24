@@ -8,7 +8,9 @@
     import toShuffled from "$lib/utils/shuffle";
     import { t } from "$langs/stores";
 
-    const sampleProjects = toShuffled(PROJECTS);
+    let { data } = $props();
+
+    let sampleProjects = $derived(data.sampleProjects)
 
     let aboutReadMore = $state(false);
     //TODO: avoid loading game assets when not on a computer

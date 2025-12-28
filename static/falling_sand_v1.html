@@ -8,12 +8,12 @@
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return await WebAssembly.instantiateStreaming(response, go.importObject);
+            return await WebAssembly.instantiateStreaming(response, importObject);
         } catch (e) {
             console.warn('WebAssembly.instantiateStreaming failed. Falling back to WebAssembly.instantiate.');
             const response = await fetch(url);
             const buffer = await response.arrayBuffer();
-            return await WebAssembly.instantiate(buffer, go.importObject);
+            return await WebAssembly.instantiate(buffer, importObject);
         }
     }
 

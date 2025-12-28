@@ -1,0 +1,18 @@
+{
+  "headers": [
+    {
+      "source": "/static/scramble_ghosts.wasm.br",
+      "headers": [
+        { "key": "Content-Encoding", "value": "br" },
+        { "key": "Content-Type", "value": "application/wasm" }
+      ]
+    },
+    {
+      "source": "/static/falling_sand_v1.wasm.br",
+      "headers": [
+        { "key": "Content-Encoding", "value": "br" },
+        { "key": "Content-Type", "value": "application/wasm" }
+      ]
+    }
+  ]
+}

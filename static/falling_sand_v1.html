@@ -18,7 +18,7 @@
     }
 
     const go = new Go();
-    loadWasm('./falling_sand_v1.wasm.br', go.importObject)
+    loadWasm('/falling_sand_v1.wasm.br', go.importObject)
         .then(result => {
             go.run(result.instance);
         })

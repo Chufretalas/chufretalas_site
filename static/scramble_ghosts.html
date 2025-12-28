@@ -18,7 +18,7 @@
     }
 
     const go = new Go();
-    loadWasm('./scramble_ghosts.wasm.br', go.importObject)
+    loadWasm('/scramble_ghosts.wasm.br', go.importObject)
         .then(result => {
             go.run(result.instance);
         })

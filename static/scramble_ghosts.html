@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <script src="./wasm_exec.js"></script>
 <script>
-    // Polyfill
-    if (!WebAssembly.instantiateStreaming) {
-        WebAssembly.instantiateStreaming = async (resp, importObject) => {
-            const source = await (await resp).arrayBuffer();
-            return await WebAssembly.instantiate(source, importObject);
-        };
+
+    async function loadWasm(url, importObject) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await WebAssembly.instantiateStreaming(response, go.importObject);
+        } catch (e) {
+            console.warn('WebAssembly.instantiateStreaming failed. Falling back to WebAssembly.instantiate.');
+            const response = await fetch(url);
+            const buffer = await response.arrayBuffer();
+            return await WebAssembly.instantiate(buffer, go.importObject);
+        }
     }
 
     const go = new Go();
-    WebAssembly.instantiateStreaming(fetch("./scramble_ghosts.wasm.br"), go.importObject).then(result => {
-        go.run(result.instance);
-    });
+    loadWasm('./scramble_ghosts.wasm.br', go.importObject)
+        .then(result => {
+            go.run(result.instance);
+        })
+        .catch(error => {
+            console.error('Error loading WebAssembly module:', error);
+        });
 </script>

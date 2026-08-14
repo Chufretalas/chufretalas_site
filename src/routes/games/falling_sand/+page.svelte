@@ -1,10 +1,10 @@
 <script lang="ts">
     import EbitengineGame from "$lib/components/EbitengineGame.svelte";
-    import { t } from "$langs/stores";
+    import LL from "$i18n/i18n-svelte";
 </script>
 
 <svelte:head>
-    <title>{$t("games.page_title")} - Falling Sand</title>
+    <title>{$LL.games.page_title()} - Falling Sand</title>
 </svelte:head>
 
 <EbitengineGame

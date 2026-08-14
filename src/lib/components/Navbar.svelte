@@ -1,7 +1,8 @@
 <script lang="ts">
     import { slide } from "svelte/transition";
     import NavbarLinks from "./NavbarLinks.svelte";
-    import { t, locale, locales } from "$langs/stores";
+    import LL, { locale, setLocale } from "$i18n/i18n-svelte";
+    import { locales } from "$i18n/i18n-util";
 
     let menuExpanded = $state(false);
 </script>
@@ -11,7 +12,7 @@
         <a href="/">
             <h1>Chufretalas</h1>
         </a>
-        <span style:margin-left={"10px"}>{$t("navbar.by")} Marco Antonio</span>
+        <span style:margin-left={"10px"}>{$LL.navbar.by()} Marco Antonio</span>
     </div>
     <div class="navigation_buttons only_on_computer" transition:slide>
         <NavbarLinks />
@@ -29,7 +30,7 @@
         <span>Menu</span>
         <span>{menuExpanded ? "︿" : "﹀"}</span>
     </button>
-    <select bind:value={$locale} class="locale_selector">
+    <select value={$locale} onchange={(e) => setLocale(e.currentTarget.value as any)} class="locale_selector">
         {#each locales as l}
             <option value={l}>{l}</option>
         {/each}

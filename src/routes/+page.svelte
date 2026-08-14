@@ -6,7 +6,7 @@
     import LinkedInLogo from "$lib/components/svgs/LinkedInLogo.svelte";
     import { PROJECTS } from "$lib/data/projects";
     import toShuffled from "$lib/utils/shuffle";
-    import { t } from "$langs/stores";
+    import LL from "$i18n/i18n-svelte";
 
     let { data } = $props();
 
@@ -17,7 +17,7 @@
 </script>
 
 <svelte:head>
-    <title>{$t("home.page_title")}</title>
+    <title>{$LL.home.page_title()}</title>
     <meta name="description" lang="en" content="The personal site from Marco Antonio Benevenuto de Oliveira (Chufretalas).">
     <meta name="description" lang="pt-BR" content="O site pessoal de Marco Antonio Benevenuto de Oliveira (Chufretalas).">
 </svelte:head>
@@ -40,17 +40,17 @@
         </VeryNiceLookingButton>
     </section>
     <section class="section_middle">
-        <CoolBox title={$t("home.about_me.title")} accentColor="#bdf5ac">
+        <CoolBox title={$LL.home.about_me.title()} accentColor="#bdf5ac">
             <div class="about_section_content">
                 <div class="about_section_text">
                     <p>
-                        {$t("home.about_me.p1")}
+                        {$LL.home.about_me.p1()}
                     </p>
                     <p class:hide_show_more={!aboutReadMore}>
-                        {$t("home.about_me.p2")}
+                        {$LL.home.about_me.p2()}
                     </p>
                     <p class:hide_show_more={!aboutReadMore}>
-                        {$t("home.about_me.p3")}
+                        {$LL.home.about_me.p3()}
                     </p>
                 </div>
                 <div
@@ -58,33 +58,33 @@
                     class:hide_show_more={!aboutReadMore}
                 >
                     <img src="/profile_picture.webp" alt="minha foto" />
-                    <span>{$t("home.about_me.image_description")}</span>
+                    <span>{$LL.home.about_me.image_description()}</span>
                 </div>
                 <button
                     onclick={() => (aboutReadMore = !aboutReadMore)}
                     id="about_show_more_button"
                     >{aboutReadMore
-                        ? $t("home.about_me.show_less")
-                        : $t("home.about_me.show_more")}</button
+                        ? $LL.home.about_me.show_less()
+                        : $LL.home.about_me.show_more()}</button
                 >
             </div>
         </CoolBox>
-        <CoolBox title={$t("home.my_projects.title")} accentColor="#39bed3">
+        <CoolBox title={$LL.home.my_projects.title()} accentColor="#39bed3">
             <div class="sample_projects_wrapper">
                 <ProjectCard project={sampleProjects[0]} />
                 <ProjectCard project={sampleProjects[1]} />
             </div>
             <a href="/projetos" class="bw_button"
-                >{$t("home.my_projects.button")}</a
+                >{$LL.home.my_projects.button()}</a
             >
         </CoolBox>
-        <CoolBox title="{$t('home.other_pages.title')} 👍" accentColor="red">
+        <CoolBox title="{$LL.home.other_pages.title()} 👍" accentColor="red">
             <div class="other_pages_inner_wrapper">
                 <a href="/games" class="bw_button"
-                    >🎮 {$t("home.other_pages.games_button")} 📺</a
+                    >🎮 {$LL.home.other_pages.games_button()} 📺</a
                 >
                 <a href="/coisas" class="bw_button"
-                    >🚀 {$t("home.other_pages.coisas_button")} 🪑</a
+                    >🚀 {$LL.home.other_pages.coisas_button()} 🪑</a
                 >
             </div>
         </CoolBox>

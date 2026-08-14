@@ -2,7 +2,7 @@
     import CoolBox from "$lib/components/CoolBox.svelte";
     import GameCard from "$lib/components/GameCard.svelte";
     import { PROJECTS } from "$lib/data/projects";
-    import { t } from "$langs/stores";
+    import LL from "$i18n/i18n-svelte";
 
     const QUICKTIMER = {
         title: "Quicktimer",
@@ -19,12 +19,12 @@
 
 
 <svelte:head>
-    <title>{$t("games.page_title")}</title>
+    <title>{$LL.games.page_title()}</title>
 </svelte:head>
 
 <main>
-    <CoolBox title="🎮 {$t('games.title')} 📺">
-        <span>{$t("games.description")}</span>
+    <CoolBox title="🎮 {$LL.games.title()} 📺">
+        <span>{$LL.games.description()}</span>
         <ul>
             <div class="projects_wrapper">
                 <GameCard accentColor="#19e3dc" project={PROJECTS[2]} />

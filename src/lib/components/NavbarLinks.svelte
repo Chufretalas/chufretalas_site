@@ -1,11 +1,11 @@
 <script lang="ts">
-    import {t} from "$langs/stores"
+    import LL from "$i18n/i18n-svelte";
 </script>
 
 <a href="/">Home</a>
-<a href="/projetos">{$t("navbar.projects")}</a>
-<a href="/games">{$t("navbar.games")}</a>
-<a href="/coisas">{$t("navbar.coisas")}</a>
+<a href="/projetos">{$LL.navbar.projects()}</a>
+<a href="/games">{$LL.navbar.games()}</a>
+<a href="/coisas">{$LL.navbar.coisas()}</a>
 <a href="https://github.com/Chufretalas" target="_blank">Github</a>
 <a href="https://www.linkedin.com/in/marco-benevenuto" target="_blank"
     >LinkedIn</a

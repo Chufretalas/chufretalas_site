@@ -2,7 +2,7 @@
     import CoolBox from "$lib/components/CoolBox.svelte";
 
     import ProjectCard from "$lib/components/ProjectCard.svelte";
-    import { t } from "$langs/stores";
+    import LL from "$i18n/i18n-svelte";
 
     let { data } = $props();
 
@@ -10,11 +10,11 @@
 </script>
 
 <svelte:head>
-    <title>{$t("projects.page_title")}</title>
+    <title>{$LL.projects.page_title()}</title>
 </svelte:head>
 
 <main>
-    <CoolBox title={$t("projects.title")}>
+    <CoolBox title={$LL.projects.title()}>
         <ul>
             <div class="projects_wrapper">
                 {#each projects as project}

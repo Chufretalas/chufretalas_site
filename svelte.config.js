@@ -7,7 +7,7 @@ const config = {
     kit: {
         adapter: adapter(),
         alias: {
-            $langs: "src/langs",
+            $i18n: "src/i18n",
         },
     },
 };

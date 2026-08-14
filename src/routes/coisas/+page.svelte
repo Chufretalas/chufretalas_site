@@ -1,18 +1,18 @@
 <script lang="ts">
     import CoisaCard from "$lib/components/CoisaCard.svelte";
     import CoolBox from "$lib/components/CoolBox.svelte";
-    import { t } from "$langs/stores";
+    import LL from "$i18n/i18n-svelte";
     import COISAS from "$lib/data/coisas";
 </script>
 
 <svelte:head>
-    <title>{$t("coisas.page_title")}</title>
+    <title>{$LL.coisas.page_title()}</title>
 </svelte:head>
 
 <main>
-    <CoolBox title="🚀 {$t('coisas.title')} 🪑">
-        <span>{$t("coisas.description")}</span>
-        <span style:font-size="small">{$t("coisas.sub_description")}</span>
+    <CoolBox title="🚀 {$LL.coisas.title()} 🪑">
+        <span>{$LL.coisas.description()}</span>
+        <span style:font-size="small">{$LL.coisas.sub_description()}</span>
         <ul>
             <div class="projects_wrapper">
                 {#each COISAS as coisa}

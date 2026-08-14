@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { IProject } from "$lib/data/projects";
     import CoolBox from "./CoolBox.svelte";
-    import { t, locale } from "$langs/stores";
+    import LL, { locale } from "$i18n/i18n-svelte";
     interface Props {
         project: IProject;
         accentColor?: string;
@@ -19,7 +19,7 @@
                 src={project.img ?? ""}
                 alt={`${project.title}'s preview image`}
             />
-            <a href={project.deployURL}>{$t("game_card.button")}</a>
+            <a href={project.deployURL}>{$LL.game_card.button()}</a>
             <p class="description">
                 {project.description[$locale]}
             </p>

@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { IProject } from "$lib/data/projects";
     import CoolBox from "./CoolBox.svelte";
-    import { t, locale } from "$langs/stores";
+    import LL, { locale } from "$i18n/i18n-svelte";
     interface Props {
         project: IProject;
         accentColor?: string;
@@ -34,7 +34,7 @@
             <div class="external_buttons">
                 {#if project.repoURL}
                     <a href={project.repoURL} target="_blank"
-                        >{$t("project_card.repo_button")}</a
+                        >{$LL.project_card.repo_button()}</a
                     >
                 {/if}
                 {#if project.deployURL}

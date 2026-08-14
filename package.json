@@ -7,7 +7,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"typesafe-i18n": "typesafe-i18n"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-node": "^5.5.4",
@@ -19,5 +20,8 @@
 		"typescript": "^5.8.3",
 		"vite": "^7.3.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"typesafe-i18n": "^5.27.1"
+	}
 }

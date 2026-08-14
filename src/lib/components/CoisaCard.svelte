@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { t, locale } from "$langs/stores";
+    import LL, { locale } from "$i18n/i18n-svelte";
     import type { ICoisa } from "$lib/data/coisas";
     import CoolBox from "./CoolBox.svelte";
 
@@ -13,7 +13,7 @@
             <p>
                 {coisa.description[$locale]}
             </p>
-            <a class="coisa_link" href={coisa.link}>{$t("coisa_card.button")}</a
+            <a class="coisa_link" href={coisa.link}>{$LL.coisa_card.button()}</a
             >
         </div>
     </CoolBox>

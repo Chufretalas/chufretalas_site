@@ -8,7 +8,7 @@
         type IArrowThingy,
     } from "$lib/types/quicktimer";
     import { fade } from "svelte/transition";
-    import { t } from "$langs/stores";
+    import LL from "$i18n/i18n-svelte";
 
     let animation = $state<number>(0);
 
@@ -172,7 +172,7 @@
 </script>
 
 <svelte:head>
-    <title>{$t("games.page_title")} - Quicktimer</title>
+    <title>{$LL.games.page_title()} - Quicktimer</title>
 </svelte:head>
 
 <svelte:window
